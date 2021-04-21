@@ -26,7 +26,7 @@
                 <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />
                 <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
                 <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-
+                <label style="color:red" class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label><br /><br />
                 <button type="submit" id="mybtn">SUBMIT</button>
                 <button type="reset">CLEAR</button><br /><br />
 
@@ -35,12 +35,23 @@
             </form>
         }
     </div>
-    <script>
+    <!--<script>
         $(document).ready(function () {
+            if (model => model.LoginErrorMessage == true)
+        {
             $('#mybtn').click(function () {
-                alert("Registered Successfully!");
+                alert(model => model.LoginErrorMessage);
             });
+        }
+        else
+        {
+            $('#mybtn').click(function () {
+                alert("Registered Successfully!/nRedirecting you towards Login");
+            });
+        }
         });
-    </script>
+    </script>-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

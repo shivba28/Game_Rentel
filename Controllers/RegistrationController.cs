@@ -20,25 +20,28 @@ namespace LoginMVC.Controllers
         {
             using (GameRentalEntities db = new GameRentalEntities())
             {
-                
-               /*if ( == userModel.email)
+                Customer cust = new Customer();
+                var eid = db.Customers.Any(x => x.email == userModel.email);
+               if (eid)
                 {
                     userModel.LoginErrorMessage = "email already exist";
                     return View("RegistrationView", userModel);
-                }*/
-                
-                    Customer cust = new Customer();
+                }
+
+
+                else
+                {
                     cust.customer_name = userModel.customer_name;
                     cust.dob = userModel.dob;
-                cust.gender = userModel.gender;
-                cust.contact = userModel.contact;
-                cust.email = userModel.email;
-                cust.password = userModel.password;
+                    cust.gender = userModel.gender;
+                    cust.contact = userModel.contact;
+                    cust.email = userModel.email;
+                    cust.password = userModel.password;
 
                     db.Customers.Add(cust);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Login");
-             
+                }
             }
         }
     }
