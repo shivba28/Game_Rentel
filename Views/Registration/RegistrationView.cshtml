@@ -1,0 +1,46 @@
+﻿@model LoginMVC.Models.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <title>Registration</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AuthorizeReg", "Registration", FormMethod.Post))
+        {
+            <form>
+                <h1><u>Registration</u></h1>
+                <input type="text" name="customer_name" placeholder="enter name" id="customer_name" required /><br /><br />
+                <input type="date" name="dob" id="dob" required /><br /><br />
+                <label>Male</label><input type="radio" name="gender" id="male" value="Male" />&nbsp;&nbsp;
+                <label>Female</label><input type="radio" name="gender" id="female" value="Female" /><br /><br />
+                <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />
+                <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+
+                <button type="submit" id="mybtn">SUBMIT</button>
+                <button type="reset">CLEAR</button><br /><br />
+
+                <p>Registered Already? Login <a href="~/Login/Index">here</a></p>
+
+            </form>
+        }
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#mybtn').click(function () {
+                alert("Registered Successfully!");
+            });
+        });
+    </script>
+</body>
+</html>

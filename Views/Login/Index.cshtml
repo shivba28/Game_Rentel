@@ -1,0 +1,33 @@
+﻿@model LoginMVC.Models.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <form>
+                <h1><u>Login</u></h1>
+                <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+                <label style="color:red" class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label><br />
+                <button type="submit">LOGIN</button>
+                <button type="reset">CLEAR</button><br /><br />
+                <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
+            </form>
+
+        }
+    </div>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
