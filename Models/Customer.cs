@@ -11,9 +11,7 @@ namespace LoginMVC.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Customer
     {
         public int customer_id { get; set; }
@@ -24,7 +22,5 @@ namespace LoginMVC.Models
         public string email { get; set; }
         public string password { get; set; }
         public string admin { get; set; }
-
-        public string LoginErrorMessage { get; set; }
     }
 }

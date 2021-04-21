@@ -26,7 +26,6 @@
                 <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />
                 <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
                 <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-                <label style="color:red" class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label><br /><br />
                 <button type="submit" id="mybtn">SUBMIT</button>
                 <button type="reset">CLEAR</button><br /><br />
 
@@ -35,6 +34,7 @@
             </form>
         }
     </div>
+    <div> <input id="getdata" type="submit" name="get data" value="get data" /> </div>
     <!--<script>
         $(document).ready(function () {
             if (model => model.LoginErrorMessage == true)
@@ -51,6 +51,22 @@
         }
         });
     </script>-->
+    <script>
+        $(document).ready(function () {
+            $("#getdata").click(function () {
+                $.ajax({
+                    url: 'https://localhost:44309/api/User',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) {
+                        console.log(data);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                    }
+                });
+            });
+        });</script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
