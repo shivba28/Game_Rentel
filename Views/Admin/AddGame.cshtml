@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <link rel="stylesheet" href="~/Styles/game.css" />
+    <title>Add Game</title>
+</head>
+<body>
+    <div class="flex-container2">
+        <div class="box">
+            <form>
+                <select name="genre" class="genre" id="genre">
+                    <option value="0">Select Genre</option>
+                    <option value="1">Action</option>
+                    <option value="2">Mystery</option>
+                    <option value="3">Arcade</option>
+                    <option value="4">Racing</option>
+                </select><br />
+                <input type="text" placeholder="enter game name" name="game_name" class="input" id="gname" required />
+                <input type="date" placeholder="DD/MM/YYYY" name="release_date" class="input" id="rdate" required />
+                <input type="number" name="availability" class="input" id="avail" required />
+                <input type="number" name="game_price" class="input" id="gprice" required />
+                <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">ADD</button>
+                <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#gname').hide();
+            $('#rdate').hide();
+            $('#avail').hide();
+            $('#gprice').hide();
+
+            $('#genre').change(function () {
+                if ($('#genre option:selected').val() != "0") {
+                    $('#gname').show();
+                    $('#rdate').show();
+                    $('#avail').show();
+                    $('#gprice').show();
+                }
+
+                else if ($('#genre option:selected').val() == "0") {
+                    $('#gname').hide();
+                    $('#rdate').hide();
+                    $('#avail').hide();
+                    $('#gprice').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Game</title>
+    <link href="~/Styles/game.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+</head>
+<body>
+    <div> 
+        <table>
+            Game List using Database
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Availability</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Assassin's Creed II: Brotherhood</td>
+                    <td>RPG</td>
+                    <td>28/01/2008</td>
+                    <td><a id="avail" href="#">10</a></td>
+                    <td><a id="price" href="#">500</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div>
+        <form id="form1">
+            <input type="text" placeholder="Enter Available Units" name="avail" id="avail1" />
+            <input type="text" placeholder="Enter Price" name="price" id="price1" />
+            <button type="submit" id="mybtn" class="btn btn-block btn-large btn-primary">UPDATE</button> 
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#avail1').hide();
+            $('#price1').hide();
+            $('#form1').hide();
+
+
+            $('#avail').click(function () {
+                $('#avail1').show();
+                $('#price1').hide();
+                $('#form1').show();
+            });
+
+            $('#price').click(function () {
+                $('#price1').show();
+                $('#avail1').hide();
+                $('#form1').show();
+            });
+
+        });
+    </script>
+</body>
+</html>
