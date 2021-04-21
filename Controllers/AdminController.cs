@@ -14,7 +14,6 @@ namespace LoginMVC.Controllers
             return View("AdminLogin");
         }
 
-        [HttpPost]
         public ActionResult AdminHome()
         {
             return View("AdminHome");

@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete Game</title>
+    <link rel="stylesheet" href="~/Styles/game.css" />
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Availability</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Assassin's Creed II: Brotherhood</td>
+                    <td>RPG</td>
+                    <td>28/01/2008</td>
+                    <td>10</td>
+                    <td>500</td>
+                    <td>@Html.ActionLink("Delete", "Delete")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
