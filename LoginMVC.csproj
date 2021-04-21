@@ -107,6 +107,18 @@
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
       <LastGenOutput>LoginDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Styles\sass\layout\_content.scss" />
+    <Content Include="Styles\sass\layout\_footer.scss" />
+    <Content Include="Styles\sass\layout\_header.scss" />
+    <Content Include="Styles\sass\libs\bootstrap-grid\_grid.scss" />
+    <Content Include="Styles\sass\libs\bootstrap-grid\_mixins.scss" />
+    <Content Include="Styles\sass\libs\bootstrap-grid\_settings.scss" />
+    <Content Include="Styles\sass\libs\_components.scss" />
+    <Content Include="Styles\sass\libs\_global.scss" />
+    <Content Include="Styles\sass\libs\_mixins.scss" />
+    <Content Include="Styles\sass\libs\_normalize.scss" />
+    <Content Include="Styles\sass\libs\_settings.scss" />
+    <Content Include="Styles\sass\style.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -118,10 +130,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Styles\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -171,6 +185,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\RegistrationView.cshtml" />
+    <Content Include="Views\Admin\AdminLogin.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Styles\sass\pages\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
