@@ -1,31 +1,62 @@
-﻿
+﻿@model LoginMVC.Models.Game
+
 @{
     Layout = null;
+}
+
+@{
+
+    ViewBag.Title = "AddGame";
+
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <link rel="stylesheet" href="~/Styles/style.css">
+    <link rel="stylesheet" href="~/Styles/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/Styles/StyleSheet1.min.css" />
     <meta name="viewport" content="width=device-width" />
     <title>Admin Home</title>
+    <style>
+        a {
+            font-size: 70px;
+        }
+    </style>
 </head>
 <body>
-        <div class="main-navigation">
-            <button class="toggle-menu"><i class="fa fa-bars"></i></button>
-            <ul class="menu">
-                <li class="menu-item home current-menu-item"><a href="index.html"><i class="icon-home"></i></a></li>
-                <li class="menu-item"><a href="products.html">Accessories</a></li>
-                <li class="menu-item"><a href="products.html">Promotions</a></li>
-                <li class="menu-item"><a href="products.html">PC</a></li>
-                <li class="menu-item"><a href="products.html">Playstation</a></li>
-                <li class="menu-item"><a href="products.html">Xbox</a></li>
-                <li class="menu-item"><a href="products.html">Wii</a></li>
-            </ul> <!-- .menu -->
-            <div class="search-form">
-                <label><img src="images/icon-search.png"></label>
-                <input type="text" placeholder="Search...">
-            </div> <!-- .search-form -->
+    <div>
+        <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
+        <label for="page-nav-toggle">
+            <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+                <g class="icon-group">
+                    <g class="icon--menu">
+                        <path d="M 6 0 L 54 0" />
+                        <path d="M 6 15 L 54 15" />
+                        <path d="M 6 30 L 54 30" />
+                    </g>
+                    <g class="icon--close">
+                        <path d="M 15 0 L 45 30" />
+                        <path d="M 15 30 L 45 0" />
+                    </g>
+                </g>
+            </svg>
+        </label>
+
+        <nav class="main-navigation">
+            <ul>
+                <li><a href="#0">Home</a></li>
+                <li>@Html.ActionLink("Add Game", "AddGame")</li>
+                <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
+                <li><a href="#0">Delete Game</a></li>
+                <li><a href="#0">Active Customers</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h1>Statistics</h1>
+            <p>in progress...</p>
+        </main>
+    </div>
 </body>
 </html>

@@ -107,6 +107,7 @@
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
       <LastGenOutput>LoginDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Styles\game.css" />
     <Content Include="Styles\sass\layout\_content.scss" />
     <Content Include="Styles\sass\layout\_footer.scss" />
     <Content Include="Styles\sass\layout\_header.scss" />
@@ -119,6 +120,10 @@
     <Content Include="Styles\sass\libs\_normalize.scss" />
     <Content Include="Styles\sass\libs\_settings.scss" />
     <Content Include="Styles\sass\style.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -130,7 +135,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Styles\style.css" />
+    <Content Include="Styles\StyleSheet1.css">
+      <DependentUpon>StyleSheet1.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\StyleSheet1.min.css">
+      <DependentUpon>StyleSheet1.css</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +197,9 @@
     <Content Include="Views\Registration\RegistrationView.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Styles\StyleSheet1.scss" />
+    <Content Include="Views\Admin\AddGame.cshtml" />
+    <Content Include="Views\Admin\UpdateGame.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

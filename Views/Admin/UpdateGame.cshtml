@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Game</title>
+    <link href="~/Styles/game.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <table>
+            Game List using Database
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Availability</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Assassin's Creed II: Brotherhood</td>
+                    <td>RPG</td>
+                    <td>28/01/2008</td>
+                    <td>@Html.ActionLink("10", "Update")</td>
+                    <td>@Html.ActionLink("500", "Update")</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

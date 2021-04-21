@@ -15,10 +15,32 @@ namespace LoginMVC.Controllers
         }
 
         [HttpPost]
-
         public ActionResult AdminHome()
         {
             return View("AdminHome");
+        }
+
+        public ActionResult AddGame()
+        {
+            return View("AddGame");
+        }
+
+
+        public ActionResult UpdateGame()
+        {
+            return View("UpdateGame");
+        }
+
+
+        public ActionResult DeleteGame()
+        {
+            return View("DeleteGame");
+        }
+
+
+        public ActionResult ActiveList()
+        {
+            return View("ActiveList");
         }
     }
 
