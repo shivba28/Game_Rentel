@@ -14,13 +14,22 @@ namespace LoginMVC.Models
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Rentals = new HashSet<Rental>();
+        }
+    
         public int customer_id { get; set; }
         public string customer_name { get; set; }
         public string dob { get; set; }
-        public string gender { get; set; }
         public string contact { get; set; }
+        public string gender { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string admin { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rental> Rentals { get; set; }
     }
 }

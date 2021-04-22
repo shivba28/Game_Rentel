@@ -41,6 +41,20 @@ namespace LoginMVC.Controllers
             db.Customers.Remove(data);
             db.SaveChanges();
         }
+
+        public void Put(int id, [FromBody] Customer cust)
+        {
+            var data = db.Customers.Find(id);
+            if (data != null)
+            {
+                data.customer_name = cust.customer_name;
+                data.dob = cust.dob;
+                data.contact = cust.contact;
+                data.email = cust.email;
+                db.SaveChanges();
+            }
+
+        }
     }
 }
 

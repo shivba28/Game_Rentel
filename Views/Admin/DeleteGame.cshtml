@@ -8,26 +8,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Delete Game</title>
-    <link rel="stylesheet" href="~/Styles/StyleSheet1.css" />
+    <link rel="stylesheet" href="~/Styles/game.css" />
+    <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <title>Delete Game</title>
     <style>
-        table {
-            margin-left: -100px;
-            width: 800px;
-            border-radius: 30px;
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            background-color: rgba(255,255,255,1);
-            color: black;
-            border: 1px solid black;
-        }
-        th {
-            text-align: center;
-        }
+       
 
         h1 {
             margin-left: 100px;
@@ -67,34 +57,47 @@
                     <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
                 </ul>
             </nav>
-            <main class="main-content">
-                <h1>Delete Game</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Genre</th>
-                            <th>Release Date</th>
-                            <th>Availability</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Assassin's Creed II: Brotherhood</td>
-                            <td>RPG</td>
-                            <td>28/01/2008</td>
-                            <td>10</td>
-                            <td>500</td>
-                            <td>@Html.ActionLink("Delete", "Delete")</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </main>
+            <div class="container">
+                <div class="box hidden">
+                    <main class="main-content">
+                        <h1>Delete Game</h1>
+
+                        <br /><br />
+                        <input type="number" placeholder="enter game id to be deleted" name="game_id" id="g_id" required />
+                        <div class="btndiv">
+                            <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">DELETE</button><br />
+                          </div>
+                        
+                    </main>
+                </div>
+            </div>
         </div>
-        </div>
+
+    </div>
+    <script>
+
+
+        $(document).ready(function () {
+            $("#mybtn").click(function () {
+                var id = $("#g_id").val();
+                console.log(id);
+                $.ajax({
+                    url: 'https://localhost:44309/api/Games/' + id,
+                    type: 'DELETE',
+                   
+                    success: function (d) {
+                        alert("deleted Successfully");
+                     
+                    },
+                    error: function () {
+                        alert("Error please try again");
+                    }
+                });
+            });
+        });
+       
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

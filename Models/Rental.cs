@@ -16,14 +16,11 @@ namespace LoginMVC.Models
     {
         public int rental_id { get; set; }
         public int customer_id { get; set; }
-        public Nullable<int> game_id { get; set; }
-        public Nullable<System.DateTime> return_date { get; set; }
+        public int game_id { get; set; }
+        public System.DateTime return_date { get; set; }
         public Nullable<System.DateTime> rented_on { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual Game Game { get; set; }
-        public virtual Rental Rental1 { get; set; }
-        public virtual Rental Rental2 { get; set; }
-        public virtual Rental Rental11 { get; set; }
-        public virtual Rental Rental3 { get; set; }
     }
 }
