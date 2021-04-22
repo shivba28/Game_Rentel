@@ -9,9 +9,9 @@ namespace LoginMVC.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index(string id)
+        public String Index(string id)
         {
-            return View("AdminView");
+            return "user logged in";
         }
 
 
