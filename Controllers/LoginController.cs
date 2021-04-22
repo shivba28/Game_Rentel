@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using LoginMVC.Models;
 
+using System.Text;
+
 namespace LoginMVC.Controllers
 {
     public class LoginController : Controller
@@ -16,14 +18,16 @@ namespace LoginMVC.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Authorize(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities db = new GameRentalEntities())
+            using (GameRentalEntities2 db = new GameRentalEntities2())
             {
-                var UserDetails = db.Customers.Where(x => x.email == userModel.email && x.password == userModel.password).FirstOrDefault();
-                if(UserDetails == null)
+                String pass = encryptpass(userModel.password);
+                var UserDetails = db.Customers.Where(x => x.email == userModel.email && x.password == pass).FirstOrDefault();
+                if (UserDetails == null)
                 {
-                    userModel.LoginErrorMessage = "email or password wrong input";
+                    //   userModel.LoginErrorMessage = "Wrong email or password";
                     return View("Index", userModel);
                 }
 
@@ -34,5 +38,14 @@ namespace LoginMVC.Controllers
                 }
             }
         }
+        public string encryptpass(string password)
+        {
+            string msg = "";
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            msg = Convert.ToBase64String(encode);
+            return msg;
+        }
     }
+
 }

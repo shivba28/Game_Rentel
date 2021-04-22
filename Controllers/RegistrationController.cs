@@ -1,6 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using LoginMVC.Models;
@@ -18,13 +20,13 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AuthorizeReg(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities db = new GameRentalEntities())
+            using (GameRentalEntities2 db = new GameRentalEntities2())
             {
                 Customer cust = new Customer();
                 var eid = db.Customers.Any(x => x.email == userModel.email);
-               if (eid)
+                if (eid)
                 {
-                    userModel.LoginErrorMessage = "Email already exists";
+                    //  userModel.LoginErrorMessage = "email already exist";
                     return View("RegistrationView", userModel);
                 }
 
@@ -36,13 +38,24 @@ namespace LoginMVC.Controllers
                     cust.gender = userModel.gender;
                     cust.contact = userModel.contact;
                     cust.email = userModel.email;
-                    cust.password = userModel.password;
+                    cust.password = encryptpass(userModel.password);
 
                     db.Customers.Add(cust);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Login");
                 }
             }
+
         }
+        public string encryptpass(string password)
+        {
+            string msg = "";
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            msg = Convert.ToBase64String(encode);
+            return msg;
+        }
+
+
     }
 }

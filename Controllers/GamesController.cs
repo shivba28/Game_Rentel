@@ -10,7 +10,7 @@ namespace LoginMVC.Controllers
 {
     public class GamesController : ApiController
     {
-        private GameRentalEntities1 db = new GameRentalEntities1();
+        private GameRentalEntities2 db = new GameRentalEntities2();
         // GET api/games
         public List<Game> Get()
         {
@@ -25,11 +25,21 @@ namespace LoginMVC.Controllers
             return game;
         }
 
-        public string PostGame([FromBody] Game game)
+        public HttpResponseMessage PostGame([FromBody] Game game)
         {
-            db.Games.Add(game);
-            db.SaveChanges();
-            return "Data added to database";
+            try
+            {
+                db.Games.Add(game);
+                db.SaveChanges();
+                //return "Data added to database";
+                var msg = Request.CreateResponse(HttpStatusCode.Created,game);
+                return msg;
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,e);
+            }
+           
         }
 
         public void Delete(int id)

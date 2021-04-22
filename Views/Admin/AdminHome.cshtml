@@ -15,6 +15,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/Styles/StyleSheet1.css" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="~/Styles/StyleSheet1.min.css" />
     <link href="~/Styles/game.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
@@ -57,7 +61,24 @@
         <main class="main-content">
             <h1>Statistics</h1>
             <p>in progress...</p>
+            <div> <input id="getdata" type="submit" name="get data" value="get data" /> </div>
         </main>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#getdata").click(function () {
+                $.ajax({
+                    url: 'https://localhost:44309/api/Games',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) {
+                        console.log(data);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                    }
+                });
+            });
+        });</script>
 </body>
 </html>
