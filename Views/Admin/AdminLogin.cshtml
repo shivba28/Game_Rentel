@@ -8,18 +8,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    
+    <link href="~/Styles/game.css" rel="stylesheet" />
+    <style>
+        .btndiv {
+            position: absolute;
+            display: flex;
+            width: 400px;
+            margin-top: 50px;
+        }
+
+        input {
+            border-radius: 50px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
     <title>Admin Login</title>
 </head>
 <body>
     @using (Html.BeginForm("AdminHome", "Admin", FormMethod.Post))
     {
-<div>
-    <h1><u>Admin Login</u></h1>
-    <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
-    <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-    <button type="submit">LOGIN</button>
-    <button type="reset">CLEAR</button><br /><br />
+<div class="container">
+    <div class="box">
+        <h1><u>Admin Login</u></h1>
+        <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+        <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+        <div class="btndiv">
+            <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
+            <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
+        </div>
+    </div>
 </div>
     }
 </body>

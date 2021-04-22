@@ -30,9 +30,15 @@
             display:none;
         }
 
+        l1 {
+            font-size: 70px;
+            
+        }
+
     </style>
 </head>
 <body>
+    <div class="bg-image"></div>
     <div>
         <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
         <label for="page-nav-toggle">
@@ -53,7 +59,7 @@
 
         <nav class="main-navigation">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>

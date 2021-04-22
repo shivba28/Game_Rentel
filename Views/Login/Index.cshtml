@@ -8,21 +8,47 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Styles/game.css" rel="stylesheet" />
+    <style>
+        .btndiv {
+            position: absolute;
+            display: flex;
+            width: 500px;
+            margin-left:37%;
+            margin-right:auto;
+        }
+
+        input {
+            border-radius: 50px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        p {
+            position:absolute;
+            margin-left: 40%;
+            margin-top: 100px;
+        }
+    </style>
     <title>Index</title>
 </head>
 <body>
     <div id="login-div">
         @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
-            <form>
-                <h1><u>Login</u></h1>
-                <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
-                <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-                <button type="submit">LOGIN</button>
-                <button type="reset">CLEAR</button><br /><br />
-                <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
-            </form>
+                <form>
+                    <h1><u>Login</u></h1>
+                    <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                    <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+                    <div class="btndiv">
+                        <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
+                        <button type="reset" class="btn btn-block btn-large btn-primary" style="margin-left: 5px;">CLEAR</button><br /><br />
+                    </div>
+                    <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
 
+                </form>
         }
     </div>
     <script src="~/Scripts/jquery.validate.min.js"></script>
