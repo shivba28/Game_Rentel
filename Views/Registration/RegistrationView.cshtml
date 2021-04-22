@@ -50,8 +50,39 @@
             });
         }
         });
+
     </script>-->
+
     <script>
+        $(document).ready(function () {
+            $('#mybtn').click(function () {
+                var User = {
+                    customer_name: $('#customer_name').val(),
+                    dob: $('#dob').val(),
+                    gender: $('#gender').val(),
+                    contact: $('#contact').val(),
+                    email: $('#email').val(),
+                    password: $('#pword').val()
+
+
+
+                }
+                $.ajax({
+                    url: "https://localhost:44309/api/Users",
+                    type: "POST",
+                    data: User,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("Hello");
+                    }
+
+
+
+
+                });
+            });
+        });
         $(document).ready(function () {
             $("#getdata").click(function () {
                 $.ajax({
@@ -67,6 +98,7 @@
                 });
             });
         });</script>
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>

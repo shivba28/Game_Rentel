@@ -10,14 +10,13 @@ namespace LoginMVC.Controllers
 {
     public class GamesController : ApiController
     {
-        private GameRentalEntities2 db = new GameRentalEntities2();
+        private Game_RentalEntities db = new Game_RentalEntities();
         // GET api/games
         public List<Game> Get()
         {
             return db.Games.ToList();
         }
-
-
+       
         // GET api/games/1
         public Game Get(int id)
         {
@@ -47,6 +46,18 @@ namespace LoginMVC.Controllers
             var data = db.Games.Find(id);
             db.Games.Remove(data);
             db.SaveChanges();
+        }
+        public void Put(int id, [FromBody] Game game)
+        {
+            var data = db.Games.Find(id);
+            if (data != null)
+            {
+                // db.Games.Add(game);
+                data.availability = game.availability;
+                data.game_price = game.game_price;
+                db.SaveChanges();
+            }
+
         }
 
     }

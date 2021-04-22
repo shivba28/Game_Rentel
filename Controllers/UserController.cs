@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     
     public class UserController : ApiController
     {
-        private GameRentalEntities2 db = new GameRentalEntities2();
+        private Game_RentalEntities db = new Game_RentalEntities();
         // GET api/values
         public List<Customer> Get()
         {
@@ -40,6 +40,20 @@ namespace LoginMVC.Controllers
             var data = db.Customers.Find(id);
             db.Customers.Remove(data);
             db.SaveChanges();
+        }
+
+        public void Put(int id, [FromBody] Customer cust)
+        {
+            var data = db.Customers.Find(id);
+            if (data != null)
+            {
+                data.customer_name = cust.customer_name;
+                data.dob = cust.dob;
+                data.contact = cust.contact;
+                data.email = cust.email;
+                db.SaveChanges();
+            }
+
         }
     }
 }

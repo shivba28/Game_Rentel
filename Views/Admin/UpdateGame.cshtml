@@ -45,43 +45,25 @@
                 <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
-        <main class="main-content">
-            <h1>Delete Game</h1>
-            <table>
-                Game List using Database
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Genre</th>
-                        <th>Release Date</th>
-                        <th>Availability</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Assassin's Creed II: Brotherhood</td>
-                        <td>RPG</td>
-                        <td>28/01/2008</td>
-                        <td><a id="avail" href="#">10</a></td>
-                        <td><a id="price" href="#">500</a></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container">
+            <div class="box hidden">
+                <main class="main-content">
+                    <h1>Edit Game</h1>
 
+                    <br /><br />
+                    <input type="number" placeholder="enter game id whose data is to be edited" name="game_id" id="g_id" required />
+                    <input type="number" placeholder="enter new availability" name="new_avail" id="new_avail" required />
 
-            <div>
-                <form id="form1">
-                    <input type="text" placeholder="Enter Available Units" name="avail" id="avail1" />
-                    <input type="text" placeholder="Enter Price" name="price" id="price1" />
-                    <button type="submit" id="mybtn" class="btn btn-block btn-large btn-primary">UPDATE</button>
-                </form>
+                    <input type="number" placeholder="enter new game price" name="new_price" id="new_price" required />
+                    <div class="btndiv">
+                        <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">EDIT</button><br />
+                    </div>
+
+                </main>
             </div>
-        </main>
+        </div>
     </div>
-    
+
     <script>
         $(document).ready(function () {
             $('#avail1').hide();
@@ -103,5 +85,33 @@
 
         });
     </script>
+    <script>
+
+
+        $(document).ready(function () {
+            $("#mybtn").click(function () {
+                var id = $("#g_id").val();
+                console.log(id);
+                $.ajax({
+                    url: 'https://localhost:44309/api/Games/' + id,
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: {
+                        availability: $("#new_avail").val(),
+                        game_price: $("#new_price").val(),},
+                    success: function (d) {
+                        alert("updated Successfully");
+
+                    },
+                    error: function () {
+                        alert("Error please try again");
+                    }
+                });
+            });
+        });
+
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
