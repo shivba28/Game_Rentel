@@ -42,7 +42,24 @@
         }
 
         table {
-            margin-left: 80px;
+            margin-left: -200px;
+            width: 1000px;
+        }
+
+        body{
+            overflow-y:scroll;
+        }
+
+        .container .box {
+            width: 1500px;
+            margin-left: -500px;
+            height: 730px;
+            margin-top: -130px;
+            background-color: rgba(255,255,255,0)
+        }
+        
+        select {
+            background-color: rgba(255,255,255,0.5);
         }
     </style>
 </head>
@@ -75,27 +92,27 @@
                 <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
-
-        <main class="main-content">
-            <h1>Statistics</h1>
-            <select id="list">
-                <option value="0">Select</option>
-                <option value="1">Full list of games</option>
-                <option value="2">Top 5 games</option>
-            </select>
-            <table id="datatable1">
-                <thead>
-                    <tr>
-                        <th>Game ID</th>
-                        <th>Game Name</th>
-                        <th>Release Date</th>
-                        <th>Availablity</th>
-                        <th>Price</th>
-                        <th>Genre</th>
-                    </tr>
-                </thead>
-            </table>
-           <!-- <table id="datatable2">
+        <div class="container">
+            <div class="box">
+            <main class="main-content">
+                <select id="list">
+                    <option value="1">Top 5 games</option>
+                    <option value="2">Full list of games</option>
+                    <option value="3">Customer list</option>
+                </select>
+                <table id="datatable1">
+                    <thead>
+                        <tr>
+                            <th>Game ID</th>
+                            <th>Game Name</th>
+                            <th>Release Date</th>
+                            <th>Availablity</th>
+                            <th>Price</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                </table>
+                <!-- <table id="datatable2">
                 <thead>
                     <tr>
                         <th>Game ID</th>
@@ -107,7 +124,9 @@
                 </thead>
             </table>-->
 
-        </main>
+            </main>
+        </div>
+    </div>
     </div>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
