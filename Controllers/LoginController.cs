@@ -18,12 +18,12 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult Authorize(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities1 db = new GameRentalEntities1())
+            using (GameRentalEntities db = new GameRentalEntities())
             {
                 var UserDetails = db.Customers.Where(x => x.email == userModel.email && x.password == userModel.password).FirstOrDefault();
                 if(UserDetails == null)
                 {
-                    //userModel.LoginErrorMessage = "Wrong email or password";
+                    userModel.LoginErrorMessage = "email or password wrong input";
                     return View("Index", userModel);
                 }
 

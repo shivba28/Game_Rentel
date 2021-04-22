@@ -11,34 +11,89 @@
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link rel="stylesheet" href="~/Styles/game.css" />
+    <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
     <title>Add Game</title>
+    <style>
+        .btndiv {
+            position: absolute;
+            display:flex; 
+            width: 400px;
+            margin-top: 50px;
+        }
+
+        input {
+            border-radius:50px;
+        }
+
+        .hidden {
+            display:none;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="flex-container2">
-        <div class="box">
-            <form>
-                <select name="genre" class="genre" id="genre">
-                    <option value="0">Select Genre</option>
-                    <option value="1">Action</option>
-                    <option value="2">Mystery</option>
-                    <option value="3">Arcade</option>
-                    <option value="4">Racing</option>
-                </select><br />
-                <input type="text" placeholder="enter game name" name="game_name" class="input" id="gname" required />
-                <input type="date" placeholder="DD/MM/YYYY" name="release_date" class="input" id="rdate" required />
-                <input type="number" name="availability" class="input" id="avail" required />
-                <input type="number" name="game_price" class="input" id="gprice" required />
-                <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">ADD</button>
-                <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button>
-            </form>
+    <div>
+        <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
+        <label for="page-nav-toggle">
+            <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+                <g class="icon-group">
+                    <g class="icon--menu">
+                        <path d="M 6 0 L 54 0" />
+                        <path d="M 6 15 L 54 15" />
+                        <path d="M 6 30 L 54 30" />
+                    </g>
+                    <g class="icon--close">
+                        <path d="M 15 0 L 45 30" />
+                        <path d="M 15 30 L 45 0" />
+                    </g>
+                </g>
+            </svg>
+        </label>
+
+        <nav class="main-navigation">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>@Html.ActionLink("Add Game", "AddGame")</li>
+                <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
+                <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
+                <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="box hidden">
+                <main class="main-content">
+                    <h1>Add Game</h1>
+                    <form>
+                        <select name="genre" class="input" id="genre">
+                            <option value="0">Select Genre</option>
+                            <option value="1">Action</option>
+                            <option value="2">Mystery</option>
+                            <option value="3">Arcade</option>
+                            <option value="4">Racing</option>
+                        </select><br /><br />
+                        <input type="text" placeholder="enter game name" name="game_name" id="gname" required />
+                        <input type="date" name="release_date" id="rdate" required />
+                        <input type="number" placeholder="enter availability" name="availability" id="avail" required />
+                        <input type="number" placeholder="enter price" name="game_price" id="gprice" required />
+                        <div class="btndiv">
+                            <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">ADD</button><br />
+                            <button type="reset" id="mybtn1" class="btn btn-block btn-large btn-primary" style="margin-left:5px">CLEAR</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
         </div>
     </div>
     <script>
         $(document).ready(function () {
+            $('.hidden').slideDown(1000);
             $('#gname').hide();
             $('#rdate').hide();
             $('#avail').hide();
             $('#gprice').hide();
+            $('#mybtn').hide();
+            $('#mybtn1').hide();
 
             $('#genre').change(function () {
                 if ($('#genre option:selected').val() != "0") {
@@ -46,6 +101,8 @@
                     $('#rdate').show();
                     $('#avail').show();
                     $('#gprice').show();
+                    $('#mybtn').show();
+                    $('#mybtn1').show();
                 }
 
                 else if ($('#genre option:selected').val() == "0") {
@@ -53,6 +110,8 @@
                     $('#rdate').hide();
                     $('#avail').hide();
                     $('#gprice').hide();
+                    $('#mybtn').hide();
+                    $('#mybtn1').hide();
                 }
             });
         });

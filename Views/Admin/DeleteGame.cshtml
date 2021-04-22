@@ -9,34 +9,88 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Delete Game</title>
-    <link rel="stylesheet" href="~/Styles/game.css" />
+    <link rel="stylesheet" href="~/Styles/StyleSheet1.css" />
+    <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
+    <style>
+        table {
+            margin-left: -100px;
+            width: 800px;
+            border-radius: 30px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            background-color: rgba(255,255,255,1);
+            color: black;
+            border: 1px solid black;
+        }
+        th {
+            text-align: center;
+        }
+
+        h1 {
+            margin-left: 100px;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Genre</th>
-                    <th>Release Date</th>
-                    <th>Availability</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Assassin's Creed II: Brotherhood</td>
-                    <td>RPG</td>
-                    <td>28/01/2008</td>
-                    <td>10</td>
-                    <td>500</td>
-                    <td>@Html.ActionLink("Delete", "Delete")</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <div>
+            <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
+            <label for="page-nav-toggle">
+                <svg class="icon--menu-toggle" viewBox="0 0 60 30">
+                    <g class="icon-group">
+                        <g class="icon--menu">
+                            <path d="M 6 0 L 54 0" />
+                            <path d="M 6 15 L 54 15" />
+                            <path d="M 6 30 L 54 30" />
+                        </g>
+                        <g class="icon--close">
+                            <path d="M 15 0 L 45 30" />
+                            <path d="M 15 30 L 45 0" />
+                        </g>
+                    </g>
+                </svg>
+            </label>
+
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li>@Html.ActionLink("Add Game", "AddGame")</li>
+                    <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
+                    <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
+                    <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
+                </ul>
+            </nav>
+            <main class="main-content">
+                <h1>Delete Game</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Genre</th>
+                            <th>Release Date</th>
+                            <th>Availability</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Assassin's Creed II: Brotherhood</td>
+                            <td>RPG</td>
+                            <td>28/01/2008</td>
+                            <td>10</td>
+                            <td>500</td>
+                            <td>@Html.ActionLink("Delete", "Delete")</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </main>
+        </div>
+        </div>
 </body>
 </html>

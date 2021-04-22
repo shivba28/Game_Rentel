@@ -18,13 +18,13 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AuthorizeReg(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities1 db = new GameRentalEntities1())
+            using (GameRentalEntities db = new GameRentalEntities())
             {
                 Customer cust = new Customer();
                 var eid = db.Customers.Any(x => x.email == userModel.email);
                if (eid)
                 {
-                   // userModel.LoginErrorMessage = "email already exist";
+                    userModel.LoginErrorMessage = "Email already exists";
                     return View("RegistrationView", userModel);
                 }
 
