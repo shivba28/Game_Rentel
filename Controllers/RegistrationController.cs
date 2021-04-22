@@ -20,7 +20,7 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AuthorizeReg(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities2 db = new GameRentalEntities2())
+            using (GameRentalEntities db = new GameRentalEntities())
             {
                 Customer cust = new Customer();
                 var eid = db.Customers.Any(x => x.email == userModel.email);

@@ -21,7 +21,7 @@ namespace LoginMVC.Controllers
 
         public ActionResult Authorize(LoginMVC.Models.Customer userModel)
         {
-            using (GameRentalEntities2 db = new GameRentalEntities2())
+            using (GameRentalEntities db = new GameRentalEntities())
             {
                 String pass = encryptpass(userModel.password);
                 var UserDetails = db.Customers.Where(x => x.email == userModel.email && x.password == pass).FirstOrDefault();

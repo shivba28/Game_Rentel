@@ -14,22 +14,40 @@
 
 <html>
 <head>
+    <link href="~/Styles/game.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Styles/StyleSheet1.css" />
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="~/Styles/StyleSheet1.min.css" />
-    <link href="~/Styles/game.css" rel="stylesheet" />
+
     <meta name="viewport" content="width=device-width" />
     <title>Admin Home</title>
     <style>
-        a {
+        .dataTables_length {
+            margin-bottom: 30px;
+        }
+
+        .dataTables_filter {
+            margin-bottom: 20px;
+        }
+
+            .dataTables_filter input {
+                margin-left: 10px;
+            }
+
+        li {
             font-size: 70px;
+        }
+
+        table {
+            margin-left: 80px;
         }
     </style>
 </head>
 <body>
+    <div class="bg-image"></div>
     <div>
         <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
         <label for="page-nav-toggle">
@@ -60,25 +78,81 @@
 
         <main class="main-content">
             <h1>Statistics</h1>
-            <p>in progress...</p>
-            <div> <input id="getdata" type="submit" name="get data" value="get data" /> </div>
+            <select id="list">
+                <option value="0">Select</option>
+                <option value="1">Full list of games</option>
+                <option value="2">Top 5 games</option>
+            </select>
+            <table id="datatable1">
+                <thead>
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Game Name</th>
+                        <th>Release Date</th>
+                        <th>Availablity</th>
+                        <th>Price</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+            </table>
+           <!-- <table id="datatable2">
+                <thead>
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Game Name</th>
+                        <th>Release Date</th>
+                        <th>Availablity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+            </table>-->
+
         </main>
     </div>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#getdata").click(function () {
                 $.ajax({
                     url: 'https://localhost:44309/api/Games',
                     type: 'GET',
                     dataType: 'json',
                     success: function (data, textStatus, xhr) {
                         console.log(data);
+                        $('#datatable1').show();
+                        $('#datatable2').show();
+
+                        if ($('#genre option:selected').val() == "1") {
+                            $('#datatable1').dataTable({
+                                data: data,
+                                columns: [
+                                    { 'data': 'game_id' },
+                                    { 'data': 'game_name' },
+                                    { 'data': 'release_date' },
+                                    { 'data': 'availability' },
+                                    { 'data': 'price' },
+                                    { 'data': 'genre_name' },
+                                ]
+                            });
+                        }
+                        else if ($('#genre option:selected').val() == "2") {
+                        $('#datatable2').dataTable({
+                            data: data,
+                            columns: [
+                                { 'data': 'game_id' },
+                                { 'data': 'game_name' },
+                                { 'data': 'release_date' },
+                                { 'data': 'availability' },
+                                { 'data': 'price' },
+                                { 'data': 'genre_name' },
+                            ]
+                        });
+                        }
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         console.log('Error in Operation');
                     }
                 });
-            });
-        });</script>
+        });
+    </script>
 </body>
 </html>
