@@ -15,7 +15,8 @@
     <AssemblyName>LoginMVC</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort>44309</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -119,27 +120,27 @@
     <Content Include="Images\gta.jpg" />
     <Content Include="Images\hzd.jpg" />
     <Content Include="Images\main.jpg" />
-    <EntityDeploy Include="Models\DataLoginModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataLoginModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="Images\pop.jpg" />
     <Content Include="Images\pubg.jpg" />
     <Content Include="Images\rdr2.jpg" />
     <Content Include="Images\witcher.jpg" />
+    <EntityDeploy Include="Models\LoginDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LoginDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="Models\LoginDataModel.edmx.diagram">
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Models\DataLoginModel.Context.tt">
+    <Content Include="Models\LoginDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataLoginModel.edmx</DependentUpon>
-      <LastGenOutput>DataLoginModel.Context.cs</LastGenOutput>
+      <DependentUpon>LoginDataModel.edmx</DependentUpon>
+      <LastGenOutput>LoginDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataLoginModel.tt">
+    <Content Include="Models\LoginDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataLoginModel.edmx</DependentUpon>
-      <LastGenOutput>DataLoginModel.cs</LastGenOutput>
+      <DependentUpon>LoginDataModel.edmx</DependentUpon>
+      <LastGenOutput>LoginDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Styles\game.css" />
     <Content Include="Styles\sass\home.css" />
@@ -188,36 +189,37 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
+    <Compile Include="Controllers\Top5Controller.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DataLoginModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataLoginModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataLoginModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataLoginModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataLoginModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataLoginModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataLoginModel.edmx</DependentUpon>
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs">
-      <DependentUpon>DataLoginModel.tt</DependentUpon>
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genre.cs">
-      <DependentUpon>DataLoginModel.tt</DependentUpon>
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Rental.cs">
-      <DependentUpon>DataLoginModel.tt</DependentUpon>
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -15,8 +15,8 @@ namespace LoginMVC.Models
     
     public partial class Game_RentalEntities : DbContext
     {
-        public Game_RentalEntities1()
-            : base("name=Game_RentalEntities1")
+        public Game_RentalEntities()
+            : base("name=Game_RentalEntities")
         {
         }
     

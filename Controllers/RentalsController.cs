@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     public class RentalsController : ApiController
     {
         // GET api/<controller>
-        private Game_RentalEntities1 db = new Game_RentalEntities1();
+        private Game_RentalEntities db = new Game_RentalEntities();
         // GET api/games
 
         //GET api/games
@@ -32,7 +32,8 @@ namespace LoginMVC.Controllers
                          {
                             
                              customer_name = c.customer_name,
-                             game_name=g.game_name
+                             game_name=g.game_name,
+                             email= c.email,
 
                          };
             //List<Customer_Detail> customer = new List<Customer_Detail>();
