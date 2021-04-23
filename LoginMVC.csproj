@@ -113,23 +113,23 @@
     <Content Include="Global.asax" />
     <Content Include="Images\addgame.jpg" />
     <Content Include="Images\main.jpg" />
-    <EntityDeploy Include="Models\LoginDataModel.edmx">
+    <EntityDeploy Include="Models\DataLoginModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LoginDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataLoginModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LoginDataModel.edmx.diagram">
-      <DependentUpon>LoginDataModel.edmx</DependentUpon>
+    <Content Include="Models\DataLoginModel.edmx.diagram">
+      <DependentUpon>DataLoginModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Models\LoginDataModel.Context.tt">
+    <Content Include="Models\DataLoginModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoginDataModel.edmx</DependentUpon>
-      <LastGenOutput>LoginDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>DataLoginModel.edmx</DependentUpon>
+      <LastGenOutput>DataLoginModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\LoginDataModel.tt">
+    <Content Include="Models\DataLoginModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoginDataModel.edmx</DependentUpon>
-      <LastGenOutput>LoginDataModel.cs</LastGenOutput>
+      <DependentUpon>DataLoginModel.edmx</DependentUpon>
+      <LastGenOutput>DataLoginModel.cs</LastGenOutput>
     </Content>
     <Content Include="Styles\game.css" />
     <Content Include="Styles\sass\layout\_content.scss" />
@@ -176,36 +176,37 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
+      <DependentUpon>DataLoginModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataLoginModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataLoginModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataLoginModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataLoginModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataLoginModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataLoginModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs">
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
+      <DependentUpon>DataLoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genre.cs">
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataModel.edmx</DependentUpon>
+      <DependentUpon>DataLoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rental.cs">
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
+      <DependentUpon>DataLoginModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -234,6 +235,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Styles\sass\pages\" />
     <Folder Include="Views\Genre\" />
+    <Folder Include="Views\Rental\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
