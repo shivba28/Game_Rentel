@@ -9,6 +9,8 @@
 
 namespace LoginMVC.Models
 {
+  
+    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.Generic;
     
@@ -19,6 +21,7 @@ namespace LoginMVC.Models
         {
             this.Rentals = new HashSet<Rental>();
         }
+        
     
         public int customer_id { get; set; }
         public string customer_name { get; set; }

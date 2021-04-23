@@ -1,93 +1,106 @@
-﻿
-@{
-    Layout = null;
-}
+﻿    @{
+        Layout = null;
+    }
 
-<!DOCTYPE html>
+@{ 
+                string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" };
+            }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="~/Styles/sass/home.css" rel="stylesheet" />
-    <style>
-        .bg-image {
-            /* The image used */
-            background-image: url(/Images/addgame.jpg);
-            /* Add the blur effect */
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
-            /* Full height */
-            height: 110%;
-            /* Center and scale the image nicely */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            width:110%;
-            z-index:-1;
-        }
-
-        a{
-            font-size:20px;
-        }
-
-         .card {
-             opacity:1;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            z-index:2;
-        }
-
-         .container {
-             position:relative;
-            background-color: transparent;
-            opacity: 0.2;
-            height: 350px;
-            width: 300px;
-            margin-left: -15px;
-            margin-top: -15px;
-            border-radius: 25px;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            z-index: 1;
-        }
-
-        .container2 {
-            position: absolute;
-            margin-top: -300px;
-            z-index: 2;
-        }
+    <!DOCTYPE html>
 
 
-    </style>
-    <title>Home</title>
-</head>
-<body>
-    <div class="bg-image"></div>
-  
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand"><u>Video Game Rental Store</u></a>
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width" />
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+            <link href="~/Styles/sass/home.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+            <style>
+                .bg-image {
+                    /* The image used */
+                    background-image: url(/Images/addgame.jpg);
+                    /* Add the blur effect */
+                    filter: blur(8px);
+                    -webkit-filter: blur(8px);
+                    /* Full height */
+                    height: 110%;
+                    /* Center and scale the image nicely */
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 110%;
+                    z-index: -1;
+                }
+
+                a {
+                    font-size: 20px;
+                }
+
+                .card {
+                    opacity: 1;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    z-index: 2;
+                    width: 300px;
+                }
+
+                .container {
+                    position: relative;
+                    background-color: transparent;
+                    opacity: 0.2;
+                    height: 350px;
+                    width: 300px;
+                    margin-left: -15px;
+                    margin-top: -15px;
+                    border-radius: 25px;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    z-index: 1;
+                }
+
+                .container2 {
+                    position: relative;
+                    margin-top: -300px;
+                    z-index: 2;
+                }
+
+                .btn{
+                    width:200px;
+                    margin-top: 60px;
+                    margin-left:30px;
+                }
+            </style>
+            <title>Home</title>
+        </head>
+        <body>
+            <div class="bg-image"></div>
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand"><u>Video Game Rental Store</u></a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                        <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
+
+                    </ul>
+
                 </div>
-                <ul class="nav navbar-nav">
-                    <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
-                    <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
-                    <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
+            </nav>
 
-            </div>
-        </nav>
+            <div class="card-container">
+                @for (var i = 0; i <= 10; i++)
+                {
 
-        <div class="card-container">
-    
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/pop.jpg);"></div>
+                <div class="card c_@i">
+                    <div class="container" style="background-image: url(@games[i]);"></div>
                     <div class="container2">
                         <header class="article-header">
                             <div>
@@ -111,255 +124,36 @@
                             <div>Action</div>
                             <div>Mystery</div>
                         </div>
+                        <button type="submit" class="btn btn-block btn-large btn-primary">RentNow</button>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
+                }
                 </div>
-
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/witcher.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/rdr2.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/batman.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/hzd.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/forza.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/pubg.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/bio.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="container" style="background-image: url(/Images/ac.jpg);"></div>
-                    <div class="container2">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Release Date<br />
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Game Details
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>Action</div>
-                            <div>Mystery</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-</body>
-</html>
+            <script src="~/Scripts/jquery-1.10.2.js"></script>
+            <script src="~/Scripts/jquery-1.4.4.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('.c_0').hide(); $('.c_1').hide(); $('.c_2').hide(); $('.c_3').hide(); $('.c_4').hide(); $('.c_5').hide(); $('.c_6').hide();
+                        var game_name;
+                        $.ajax({
+                            url: 'https://localhost:44309/api/games',
+                            type: 'GET',
+                            async: false,
+                            dataType: 'json',
+                            success: function (data, textStatus, xhr) {
+                                console.log(data);
+                                game_name = data[0].game_name;
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log('Error in Operation');
+                            }
+                            
+                        });
+                    
+                    if (game_name == "POP") {
+                        $('.c_0').show();
+                    }
+                });</script>
+        </body>
+    </html>
