@@ -28,8 +28,6 @@ namespace LoginMVC.Models
         public string email { get; set; }
         public string password { get; set; }
         public string admin { get; set; }
-
-        public string LoginErrorMessage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }

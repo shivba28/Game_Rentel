@@ -14,6 +14,16 @@ namespace LoginMVC.Controllers
             return View("AdminLogin");
         }
 
+        [HttpPost]
+        public ActionResult AdminLogin(string email, string password)
+        {
+            if(email=="Admin@gmail.com" && password=="Admin")
+            {
+                return View("AdminHome");
+            }
+            ViewBag.errormsg = "wrong email or password";
+            return RedirectToAction("Index");
+        }
         public ActionResult AdminHome()
         {
             return View("AdminHome");

@@ -1,4 +1,4 @@
-﻿
+﻿@using LoginMVC.Controllers;
 @{
     Layout = null;
 }
@@ -43,13 +43,14 @@
     <title>Admin Login</title>
 </head>
 <body>
-    @using (Html.BeginForm("AdminHome", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("AdminLogin", "Admin", FormMethod.Post))
     {
 <div class="container">
     <div class="box">
         <h1><u>Admin Login</u></h1>
         <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
         <input type="password" name="password" placeholder="enter password" id="pword" required />
+        <span>@ViewBag.errormsg</span>
         <div class="btndiv">
             <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
             <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button>
