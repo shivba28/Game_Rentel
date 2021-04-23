@@ -15,8 +15,7 @@
     <AssemblyName>LoginMVC</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort>44309</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -111,14 +110,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\ac.jpg" />
     <Content Include="Images\addgame.jpg" />
+    <Content Include="Images\batman.jpg" />
+    <Content Include="Images\bio.jpg" />
+    <Content Include="Images\cod.jpg" />
+    <Content Include="Images\forza.jpg" />
+    <Content Include="Images\gta.jpg" />
+    <Content Include="Images\hzd.jpg" />
     <Content Include="Images\main.jpg" />
     <EntityDeploy Include="Models\DataLoginModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataLoginModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataLoginModel.edmx.diagram">
-      <DependentUpon>DataLoginModel.edmx</DependentUpon>
+    <Content Include="Images\pop.jpg" />
+    <Content Include="Images\pubg.jpg" />
+    <Content Include="Images\rdr2.jpg" />
+    <Content Include="Images\witcher.jpg" />
+    <Content Include="Models\LoginDataModel.edmx.diagram">
+      <DependentUpon>LoginDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\DataLoginModel.Context.tt">
@@ -132,6 +142,7 @@
       <LastGenOutput>DataLoginModel.cs</LastGenOutput>
     </Content>
     <Content Include="Styles\game.css" />
+    <Content Include="Styles\sass\home.css" />
     <Content Include="Styles\sass\layout\_content.scss" />
     <Content Include="Styles\sass\layout\_footer.scss" />
     <Content Include="Styles\sass\layout\_header.scss" />
@@ -171,9 +182,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
@@ -215,7 +226,6 @@
     <None Include="packages.config" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\RegistrationView.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
@@ -224,6 +234,9 @@
     <Content Include="Views\Admin\UpdateGame.cshtml" />
     <Content Include="Views\Admin\DeleteGame.cshtml" />
     <Content Include="Views\Admin\ActiveList.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Rent.cshtml" />
+    <Content Include="Views\Customer\TopGames.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

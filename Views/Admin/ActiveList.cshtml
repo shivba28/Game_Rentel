@@ -10,14 +10,69 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
-
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <title>ActiveList</title>
+    <link href="~/Styles/game.css" rel="stylesheet" />
+    <style>
+        body {
+            overflow-y:scroll;
+        }
+        table {
+            margin-left: -280px;
+            width: 1200px;
+            border-radius: 30px;
+            background-color: rgba(255,255,255,0);
+        }
+
+
+        .dataTables_length {
+            margin-bottom: 30px;
+            margin-top: -80px;
+        }
+
+        .dataTables_filter {
+            margin-bottom: 20px;
+        }
+
+        .dataTables_filter input {
+            margin-left: 10px;
+        }
+
+        li {
+            font-size: 70px;
+        }
+
+        .list{
+            position: relative;
+            margin-left: 400px;
+            margin-top:-60%;
+        }
+
+        .container .box {
+            width: 1400px;
+            margin-left: -500px;
+            height: 730px;
+            margin-top: -130px;
+            background-color: rgba(255,255,255,0)
+        }
+
+
+        a{
+            padding:10px;
+        }
+
+        select {
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+        }
+    </style>
+    <title>Active List</title>
 </head>
 <body>
+    <div class="bg-image"></div>
     <div>
+
         <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
         <label for="page-nav-toggle">
             <svg class="icon--menu-toggle" viewBox="0 0 60 30">
@@ -37,20 +92,35 @@
 
         <nav class="main-navigation">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
                 <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
-        <main class="main-content">
-            <h1>Active List</h1>
-            <div> <input id="getdata" type="submit" name="get data" value="get data" /> </div>
-            In progress....
-            <table></table>
-        </main>
+        <div class="container">
+        <div class="box">
+
+                <main class="main-content">
+
+                    <table id="datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Email ID</th>
+                                <th>Contact Info</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </main>
+            </div>
+        </div>
     </div>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#getdata").click(function () {
@@ -65,6 +135,28 @@
                         console.log('Error in Operation');
                     }
                 });
+            });
+            $.ajax({
+                url: 'https://localhost:44309/api/User',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    $('#datatable').dataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'customer_id' },
+                            { 'data': 'customer_name' },
+                            { 'data': 'dob' },
+                            { 'data': 'gender' },
+                            { 'data': 'email' },
+                            { 'data': 'contact' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
             });
         });</script>
     <script src="~/Scripts/jquery.validate.min.js"></script>

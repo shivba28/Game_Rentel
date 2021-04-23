@@ -3,26 +3,101 @@
 
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Styles/game.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .btndiv {
+            position: absolute;
+            display: block;
+            width: 250px;
+            margin-left: 20%;
+            margin-right: auto;
+        }
+
+
+        input {
+            border-radius: 50px;
+        }
+
+        .max {
+            display: none;
+        }
+
+        p {
+            position: absolute;
+            margin-left: 20%;
+            margin-top: 100px;
+        }
+
+        form {
+            margin-top: 20%;
+        }
+
+        .container .box {
+            margin-top: 5%;
+            height: 350px;
+        }
+
+        a {
+            font-size: 20px;
+        }
+
+        input {
+            color: white;
+        }
+    </style>
     <title>Index</title>
 </head>
 <body>
-    <div id="login-div">
-        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-        {
-            <form>
-                <h1><u>Login</u></h1>
-                <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
-                <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-                <button type="submit">LOGIN</button>
-                <button type="reset">CLEAR</button><br /><br />
-                <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
-            </form>
+    <div class="bg-image"></div>
 
-        }
+    <div class="container">
+        <div class="box2">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand"><u>Video Game Rental Store</u></a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Customer")</li>
+                        <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
+                        <li class="active">@Html.ActionLink("Login", "Index", "Login")</li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="box">
+            <div id="login-div">
+                @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+                {
+                    <form>
+                        <h1><u>Login</u></h1>
+                        <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                        <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+                        <div class="btndiv">
+                            <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
+                            <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
+                        </div>
+                        <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
+
+                    </form>
+                }
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.max').slideDown(1000);
+
+        });
+    </script>
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
 </body>
 </html>
