@@ -387,6 +387,7 @@
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
       <LastGenOutput>LoginDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Styles\adminhome.css" />
     <Content Include="Styles\game.css" />
     <Content Include="Styles\sass\home.css" />
     <Content Include="Styles\sass\layout\_content.scss" />
@@ -478,7 +479,6 @@
     <Content Include="Views\Admin\AddGame.cshtml" />
     <Content Include="Views\Admin\UpdateGame.cshtml" />
     <Content Include="Views\Admin\DeleteGame.cshtml" />
-    <Content Include="Views\Admin\ActiveList.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Rent.cshtml" />
     <Content Include="Views\Customer\TopGames.cshtml" />

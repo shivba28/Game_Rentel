@@ -20,19 +20,27 @@
     <style>
         .btndiv {
             position: absolute;
-            display: flex;
-            width: 400px;
+            display: block;
+            width: 200px;
             margin-top: 50px;
+            margin-left:80px;
         }
 
         input {
             border-radius: 50px;
             color: white;
+            margin-bottom:10px;
         }
 
 
         li {
-            font-size: 70px;
+            font-size: 100px;
+        }
+
+
+        select {
+            background-color: #337ab7;
+            color: white;
         }
     </style>
 </head>
@@ -59,16 +67,14 @@
         <nav class="main-navigation">
             <ul>
                 <li>@Html.ActionLink("Home", "AdminHome")</li>
-                <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
-                <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
         <div class="container">
             <div class="box">
                 <main class="main-content">
-                    <h1>Add Game</h1>
+                    <h1 style="font-size: 40px;">Add Game</h1>
                     <form>
                         <select name="genre" class="input" id="genre">
                             <option value="0">Select Genre</option>
@@ -82,8 +88,8 @@
                         <input type="number" placeholder="enter availability" name="availability" id="avail" required />
                         <input type="number" placeholder="enter price" name="game_price" id="gprice" required />
                         <div class="btndiv">
-                            <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">ADD</button><br />
-                            <button type="reset" id="mybtn1" class="btn btn-block btn-large btn-primary" style="margin-left:5px">CLEAR</button>
+                            <button type="button" id="mybtn" class="btn btn-block btn-large btn-primary">ADD</button>
+                            <button type="reset" id="mybtn1" class="btn btn-block btn-large btn-primary" style="margin-top:5px">CLEAR</button>
                         </div>
                     </form>
                 </main>

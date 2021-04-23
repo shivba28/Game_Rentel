@@ -23,6 +23,7 @@ namespace LoginMVC.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        [HttpPost]
         public ActionResult Rent()
         {
             return View("Rent");

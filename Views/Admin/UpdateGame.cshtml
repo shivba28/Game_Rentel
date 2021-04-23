@@ -9,16 +9,102 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Update Game</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link href="~/Styles/game.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+
+    <style>
+
+
+        .container {
+            position: absolute;
+        }
+
+        .btndiv {
+            width: 200px;
+            margin-left: 80px;
+        }
+
+
+        .container {
+            position: absolute;
+            display: flex;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+            .container .box {
+                position: relative;
+                left: 0px;
+                height: 350px;
+                width: 25%;
+                margin-left: 20px;
+            }
+
+        .box input {
+            color: white;
+            border-radius: 25px;
+            margin-top: -300px;
+            
+        }
+
+        .btndiv {
+            width: 400px;
+            margin-top: 30px;
+            margin-left: 80px;
+        }
+
+        .container .box2 {
+            width: 70%;
+            height: 700px;
+            background-color:transparent;
+            position: relative;
+            margin-top: 80px;
+            margin-left: 20px;
+            border-radius: 25px;
+        }
+
+        .dataTables_length {
+            margin-bottom: 30px;
+        }
+
+        .dataTables_filter {
+            margin-bottom: 20px;
+        }
+
+            .dataTables_filter input {
+               margin-left:15px;
+            }
+
+        li {
+            font-size: 100px;
+        }
+
+        table {
+            width: 1000px;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        select {
+            background-color: #4a77d4;
+        }
+
+        a {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div class="bg-image"></div>
     <div>
+
         <input id="page-nav-toggle" class="main-navigation-toggle" type="checkbox" />
         <label for="page-nav-toggle">
             <svg class="icon--menu-toggle" viewBox="0 0 60 30">
@@ -38,19 +124,15 @@
 
         <nav class="main-navigation">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
-                <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
-                <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
         <div class="container">
-            <div class="box hidden">
+            <div class="box">
                 <main class="main-content">
                     <h1>Edit Game</h1>
-
-                    <br /><br />
                     <input type="number" placeholder="enter game id whose data is to be edited" name="game_id" id="g_id" required />
                     <input type="number" placeholder="enter new availability" name="new_avail" id="new_avail" required />
 
@@ -61,33 +143,25 @@
 
                 </main>
             </div>
+
+            <div class="box2">
+                <table id="datatable">
+                    <thead>
+                        <tr>
+                            <th>Game ID</th>
+                            <th>Game Name</th>
+                            <th>Release Date</th>
+                            <th>Availablity</th>
+                            <th>Price</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
         </div>
     </div>
-
     <script>
-        $(document).ready(function () {
-            $('#avail1').hide();
-            $('#price1').hide();
-            $('#form1').hide();
-
-
-            $('#avail').click(function () {
-                $('#avail1').show();
-                $('#price1').hide();
-                $('#form1').show();
-            });
-
-            $('#price').click(function () {
-                $('#price1').show();
-                $('#avail1').hide();
-                $('#form1').show();
-            });
-
-        });
-    </script>
-    <script>
-
-
         $(document).ready(function () {
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
@@ -98,7 +172,8 @@
                     dataType: 'json',
                     data: {
                         availability: $("#new_avail").val(),
-                        game_price: $("#new_price").val(),},
+                        game_price: $("#new_price").val(),
+                    },
                     success: function (d) {
                         alert("updated Successfully");
 
@@ -109,7 +184,34 @@
                 });
             });
         });
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://localhost:44309/api/Games',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
 
+                    $('#datatable').dataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'game_id' },
+                            { 'data': 'game_name' },
+                            { 'data': 'release_date' },
+                            { 'data': 'availability' },
+                            { 'data': 'game_price' },
+                            { 'data': 'Genre.genre_name' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        });
     </script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
