@@ -24,6 +24,7 @@ namespace LoginMVC.Controllers
             return game;
         }
 
+        [HttpPost]
         public HttpResponseMessage PostGame([FromBody] Game game)
         {
             try

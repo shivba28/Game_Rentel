@@ -7,12 +7,12 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Styles/game.css" />
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -27,13 +27,13 @@
 
         input {
             border-radius: 50px;
+            color: white;
         }
 
 
         li {
             font-size: 70px;
         }
-
     </style>
 </head>
 <body>
@@ -134,7 +134,7 @@
                     game_price: $("#gprice").val(),
                 }
                 $.ajax({
-                    url: 'https://localhost:44309/api/Games/game',
+                    url: 'https://localhost:44309/api/games/game',
                     type: 'POST',
                     dataType: 'json',
                     data: data,
