@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
         // GET api/<controller>
 
         // GET api/<controller>/5
-        private Game_RentalEntities db = new Game_RentalEntities();
+        private Game_RentalEntities2 db = new Game_RentalEntities2();
         // GET api/games
         public List<Genre> Get()
         {

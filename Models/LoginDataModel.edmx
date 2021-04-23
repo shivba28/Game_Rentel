@@ -188,31 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Rental_Rental">
-          <End Role="Rental" Type="Self.Rental" Multiplicity="1" />
-          <End Role="Rental1" Type="Self.Rental" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Rental">
-              <PropertyRef Name="rental_id" />
-            </Principal>
-            <Dependent Role="Rental1">
-              <PropertyRef Name="rental_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rental_Rental1">
-          <End Role="Rental" Type="Self.Rental" Multiplicity="1" />
-          <End Role="Rental1" Type="Self.Rental" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Rental">
-              <PropertyRef Name="rental_id" />
-            </Principal>
-            <Dependent Role="Rental1">
-              <PropertyRef Name="rental_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="GameRentalEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Game_RentalEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Genres" EntityType="Self.Genre" />
@@ -235,7 +211,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GameRentalModelStoreContainer" CdmEntityContainer="GameRentalEntities">
+        <EntityContainerMapping StorageEntityContainer="Game_RentalModelStoreContainer" CdmEntityContainer="Game_RentalEntities2">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Game_RentalModel.Customer">
               <MappingFragment StoreEntitySet="Customer">

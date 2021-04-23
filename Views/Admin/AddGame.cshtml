@@ -7,6 +7,7 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Styles/game.css" />
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
@@ -28,9 +29,11 @@
             border-radius: 50px;
         }
 
-        .hidden {
-            display: none;
+
+        li {
+            font-size: 70px;
         }
+
     </style>
 </head>
 <body>
@@ -63,7 +66,7 @@
             </ul>
         </nav>
         <div class="container">
-            <div class="box hidden">
+            <div class="box">
                 <main class="main-content">
                     <h1>Add Game</h1>
                     <form>
@@ -89,7 +92,6 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('.hidden').slideDown(1000);
             $('#gname').hide();
             $('#rdate').hide();
             $('#avail').hide();
@@ -120,14 +122,13 @@
 
     </script>
     <script>
-      
-      
+
+
         $(document).ready(function () {
             $("#mybtn").click(function () {
                 var data = {
-                   
+
                     game_name: $("#gname").val(),
-                    genre_id: 1,
                     release_date: $("#rdate").val(),
                     availability: $("#avail").val(),
                     game_price: $("#gprice").val(),
@@ -144,11 +145,11 @@
                     error: function () {
                         alert("Error please try again");
                     }
-                });  
+                });
             });
         });
-      
-     </script>
+
+    </script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
