@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LoginMVC.Models;
-
+using System.Web.Security;
 using System.Text;
+
 
 namespace LoginMVC.Controllers
 {
@@ -19,22 +20,22 @@ namespace LoginMVC.Controllers
 
         [HttpPost]
 
-        public ActionResult Authorize(LoginMVC.Models.Customer userModel)
+        public ActionResult Authorize(string email, string password)
         {
-            using (Game_RentalEntities2 db = new Game_RentalEntities2())
+            using (Game_RentalEntities3 db = new Game_RentalEntities3())
             {
-                String pass = encryptpass(userModel.password);
-                var UserDetails = db.Customers.Where(x => x.email == userModel.email && x.password == pass).FirstOrDefault();
-                if (UserDetails == null)
+                String pass = encryptpass(password);
+                bool isvalid = db.Customers.Any(x => x.email == email && x.password == pass);
+                if (isvalid)
                 {
-                    userModel.LoginErrorMessage = "Wrong email or password";
-                    return View("Index", userModel);
+                    FormsAuthentication.SetAuthCookie(email, false);
+                    return RedirectToAction("Index", "Customer"); 
                 }
 
                 else
                 {
-                    Session["CustomerID"] = UserDetails.customer_id;
-                    return RedirectToAction("Index", "Customer");
+                    ModelState.AddModelError(" ", "Invalid email or Password");
+                    return View("Index");
                 }
             }
         }
@@ -45,6 +46,12 @@ namespace LoginMVC.Controllers
             encode = Encoding.UTF8.GetBytes(password);
             msg = Convert.ToBase64String(encode);
             return msg;
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("index");
         }
     }
 

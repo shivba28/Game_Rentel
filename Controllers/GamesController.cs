@@ -10,7 +10,7 @@ namespace LoginMVC.Controllers
 {
     public class GamesController : ApiController
     {
-        private Game_RentalEntities1 db = new Game_RentalEntities1();
+        private Game_RentalEntities3 db = new Game_RentalEntities3();
         // GET api/games
         public List<Game> Get()
         {
@@ -24,6 +24,7 @@ namespace LoginMVC.Controllers
             return game;
         }
 
+        [HttpPost]
         public HttpResponseMessage PostGame([FromBody] Game game)
         {
             try

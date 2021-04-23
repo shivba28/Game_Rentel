@@ -10,6 +10,14 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>TopGames</title>
+    <style>
+        #dearUser {
+            color: black;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -20,7 +28,15 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index")</li>
                 <li class="active">@Html.ActionLink("Top 5 Games", "TopGames")</li>
-                <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li id="dearUser">Dear - @User.Identity.Name</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Index", "Login");
+                }
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
