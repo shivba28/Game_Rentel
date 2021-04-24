@@ -13,10 +13,10 @@ namespace LoginMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Game_RentalEntities2 : DbContext
+    public partial class Game_RentalEntities : DbContext
     {
-        public Game_RentalEntities2()
-            : base("name=Game_RentalEntities2")
+        public Game_RentalEntities()
+            : base("name=Game_RentalEntities")
         {
         }
     
