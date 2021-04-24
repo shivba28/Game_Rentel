@@ -1,14 +1,15 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@using LoginMVC.Controllers;
+@{ Layout = null; }
 
+@{ string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" }; }
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="~/Styles/sass/home.css" rel="stylesheet" />
     <title>TopGames</title>
     <style>
         #dearUser {
@@ -17,9 +18,146 @@
             margin-top: 10px;
             font-style: italic;
         }
+
+        .bg-image {
+            /* The image used */
+            background-image: url(/Images/addgame.jpg);
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            /* Full height */
+            height: 110%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .card-container {
+            margin-top: 140px;
+            height: 400px;
+            width: 57%;
+            margin-left:40%;
+        }
+
+        .card-container2 {
+            position: absolute;
+            margin-top:0px;
+            height: 400px;
+            width: 23%;
+            margin-left: 6.5%;
+            z-index: -1;
+        }
+
+           .btn2{
+            margin-left:40px;
+        }
+
+        .card:hover ~ .card {
+            transform: translateX(150px);
+        }
+
+        .card {
+            opacity: 1;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 2;
+            width: 300px;
+            height: 350px;
+        }
+
+        .card-container2 .card {
+            height:350px;
+            width: 300px;
+            z-index:-1;
+        }
+
+        .container {
+            position: relative;
+            background-color: transparent;
+            opacity: 0.7;
+            height: 350px;
+            width: 300px;
+            margin-left: -15px;
+            margin-top: -15px;
+            border-radius: 25px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .card-container2 .container {
+            position: relative;
+            background-color: transparent;
+            opacity: 0.7;
+            height: 350px;
+            width: 300px;
+            margin-left: -15px;
+            margin-top: -15px;
+            border-radius: 25px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+
+        .container2 {
+            position: relative;
+            margin-top: -300px;
+            z-index: 4;
+        }
+
+        #dearUser {
+            color: black;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .btn {
+            width: 200px;
+            margin-left: 30px;
+            margin-top: 250px;
+        }
+
+
+        .tags {
+            color: white;
+        }
+
+        .date {
+            color: black;
+        }
+
+        a{
+            font-size:18px;
+        }
+
+        .img1{
+            position:absolute;
+            top:13%;
+            left:13%;
+            width: 150px;
+            height:auto;
+            z-index:2;
+        }
+
+        .img2 {
+            position: absolute;
+            top: 10px;
+            margin-left:-100px;
+            z-index:1;
+            width:750px;
+            height:750px;
+        }
     </style>
 </head>
 <body>
+    <div class="bg-image"></div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,23 +166,69 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index")</li>
                 <li class="active">@Html.ActionLink("Top 5 Games", "TopGames")</li>
+                <li><a href="#">Contact Us</a></li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li id="dearUser">Dear - @User.Identity.Name</li>
+    <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-                }
+ }
                 else
                 {
-                    @Html.ActionLink("Login", "Index", "Login");
-                }
-                <li><a href="#">Contact Us</a></li>
+    <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
+}
+
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <h3>Basic Navbar Example</h3>
-        <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
-    </div>
+    @using (Html.BeginForm("Rent", "Customer", FormMethod.Post))
+    {
+<img class="img1" src="~/Images/crown.png" />
+                                <div class="card-container2">
+                                    <div class="card">
+                                        <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
+                                        <div class="container2">
+                                            <button type="submit" class="btn btn-block btn-large btn-primary btn2">Rent Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                                <div class="card-container">
+                                                    @for (var i = 0; i < games.Length; i++)
+                                                    {
+
+                                    <div class="card c_@i">
+                                        <div class="container" style="background-image: url(@games[i]);"></div>
+                                        <div class="container2">
+                                            <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                                        </div>
+                                    </div>}
+                                                </div>}
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.c_0').hide(); $('.c_1').hide(); $('.c_2').hide(); $('.c_3').hide(); $('.c_4').hide(); $('.c_5').hide(); $('.c_6').hide(); $('.c_7').hide();
+            var game_name;
+            $.ajax({
+                url: 'https://localhost:44309/api/games',
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    game_name = data[0].game_name;
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+
+            });
+
+            if (game_name == "POP") {
+                $('.c_0').show();
+            }
+        });</script>
 </body>
 </html>

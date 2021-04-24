@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     public class RentalsController : ApiController
     {
         // GET api/<controller>
-        private Game_RentalEntities db = new Game_RentalEntities();
+        private Game_RentalEntities4 db = new Game_RentalEntities4();
         // GET api/games
 
         //GET api/games

@@ -63,27 +63,30 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Customer")</li>
                         <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
-                        <li class="active">@Html.ActionLink("Login", "Index", "Login")</li>
                         <li><a href="#">Contact Us</a></li>
+                        <li class="active" style="padding-left:780px;">@Html.ActionLink("Login", "Index", "Login")</li>
+
                     </ul>
                 </div>
             </nav>
         </div>
         <div class="box">
             <div id="login-div">
-                @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+                @using (Html.BeginForm("Authorize", "Login", FormMethod.Post, new { ReturnUrl = this.Request.RawUrl }))
+  
                 {
-                    <form>
-                        <h1><u>Login</u></h1>
-                        <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
-                        <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-                        <div class="btndiv">
-                            <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
-                            <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
-                        </div>
-                        <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
+                <form>
+                    <h1><u>Login</u></h1>
+                    <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                    <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+                    <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
+                    <div class="btndiv">
+                        <button type="submit" class="btn btn-block btn-large btn-primary">LOGIN</button>
+                        <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
+                    </div>
+                    <p>Are you a new user? Register <a href="~/Registration/Index">here</a></p>
 
-                    </form>
+                </form>
                 }
             </div>
         </div>

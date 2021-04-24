@@ -21,7 +21,7 @@
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="~/Styles/StyleSheet1.min.css" />
-
+    <link href="~/Styles/adminhome.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>Admin Home</title>
     <style>
@@ -34,7 +34,7 @@
         }
 
             .dataTables_filter input {
-                margin-left: 10px;
+                margin-left: 15px;
             }
 
         li {
@@ -42,24 +42,34 @@
         }
 
         table {
-            margin-left: -200px;
             width: 1000px;
+            margin-left: 250px;
+            margin-bottom: 20px;
         }
 
-        body{
-            overflow-y:scroll;
+        body {
+            overflow-y: scroll;
         }
+
 
         .container .box {
             width: 1500px;
-            margin-left: -500px;
+            margin-left: -550px;
             height: 730px;
             margin-top: -130px;
-            background-color: rgba(255,255,255,0)
+            background-color: rgba(255,255,255,0);
         }
-        
+
         select {
             background-color: rgba(255,255,255,0.5);
+        }
+
+        a {
+            padding: 20px;
+        }
+
+        li {
+            font-size: 100px;
         }
     </style>
 </head>
@@ -85,21 +95,18 @@
 
         <nav class="main-navigation">
             <ul>
-                <li>@Html.ActionLink("Home","AdminHome","Admin")</li>
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
-                <li>@Html.ActionLink("Active Customers List", "ActiveList")</li>
             </ul>
         </nav>
         <div class="container">
             <div class="box">
-                <main class="main-content">
-                    <select id="list">
-                        <option value="1">Top 5 games</option>
-                        <option value="2">Full list of games</option>
-                        <option value="3">Customer list</option>
-                    </select>
+                <button class="tablink" onclick="openPage('Home', this, '#555')" id="defaultOpen">Games List</button>
+                <button class="tablink" onclick="openPage('News', this, '#555')">Users List</button>
+                <button class="tablink" onclick="openPage('Contact', this, '#555')">Active Users List</button>
+
+                <div id="Home" class="tabcontent">
                     <table id="datatable1">
                         <thead>
                             <tr>
@@ -112,39 +119,130 @@
                             </tr>
                         </thead>
                     </table>
+                </div>
 
-                </main>
+                <div id="News" class="tabcontent">
+                    <table id="datatable2">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Email ID</th>
+                                <th>Contact Info</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div id="Contact" class="tabcontent">
+                    <table id="datatable3" style="margin-left:230px;">
+                        <thead>
+                            <tr>
+                                <th>ACTIVE USER NAME</th>
+                                <th>GAME NAME</th>
+                                <th>EMAIL</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+            <script>
+                function openPage(pageName, elmnt, color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].style.backgroundColor = "";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                    elmnt.style.backgroundColor = color;
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
+
+
         </div>
-    </div>
     </div>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-                $.ajax({
-                    url: 'https://localhost:44309/api/Games',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, xhr) {
-                        console.log(data);
+            $.ajax({
+                url: 'https://localhost:44309/api/Games',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
 
-                            $('#datatable1').dataTable({
-                                data: data,
-                                columns: [
-                                    { 'data': 'game_id' },
-                                    { 'data': 'game_name' },
-                                    { 'data': 'release_date' },
-                                    { 'data': 'availability' },
-                                    { 'data': 'game_price' },
-                                    { 'data': 'Genre.genre_name' },
-                                ]
-                            });
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        console.log('Error in Operation');
-                    }
-                });
+                    $('#datatable1').dataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'game_id' },
+                            { 'data': 'game_name' },
+                            { 'data': 'release_date' },
+                            { 'data': 'availability' },
+                            { 'data': 'game_price' },
+                            { 'data': 'Genre.genre_name' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+            $.ajax({
+                url: 'https://localhost:44309/api/User',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    $('#datatable2').dataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'customer_id' },
+                            { 'data': 'customer_name' },
+                            { 'data': 'dob' },
+                            { 'data': 'gender' },
+                            { 'data': 'email' },
+                            { 'data': 'contact' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
 
+            $.ajax({
+                url: 'https://localhost:44309/api/Rentals',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    $('#datatable3').dataTable({
+                        data: data,
+                        columns: [
+
+                            { 'data': 'customer_name' },
+                            { 'data': 'game_name' },
+                            { 'data': 'email' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
         });
     </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
