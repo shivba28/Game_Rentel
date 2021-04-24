@@ -10,7 +10,7 @@ namespace LoginMVC.Controllers
 {
     public class GamesController : ApiController
     {
-        private Game_RentalEntities3 db = new Game_RentalEntities3();
+        private Game_RentalEntities4 db = new Game_RentalEntities4();
         // GET api/games
         public List<Game> Get()
         {

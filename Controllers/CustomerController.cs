@@ -23,12 +23,13 @@ namespace LoginMVC.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        [HttpPost]
+        [Authorize]
         public ActionResult Rent()
         {
             return View("Rent");
         }
 
+        [Authorize]
         public ActionResult TopGames()
         {
             return View("TopGames");

@@ -22,14 +22,21 @@ namespace LoginMVC.Controllers
 
         public ActionResult Authorize(string email, string password)
         {
-            using (Game_RentalEntities3 db = new Game_RentalEntities3())
+            using (Game_RentalEntities4 db = new Game_RentalEntities4())
             {
                 String pass = encryptpass(password);
                 bool isvalid = db.Customers.Any(x => x.email == email && x.password == pass);
                 if (isvalid)
                 {
                     FormsAuthentication.SetAuthCookie(email, false);
-                    return RedirectToAction("Index", "Customer"); 
+                    if (Request.Form["ReturnUrl"] != null)
+                    {
+                        return Redirect(Request.Form["ReturnUrl"]);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
 
                 else

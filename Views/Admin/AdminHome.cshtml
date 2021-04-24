@@ -137,69 +137,66 @@
                 </div>
 
                 <div id="Contact" class="tabcontent">
-                    <table id="datatable3">
+                    <table id="datatable3" style="margin-left:230px;">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Date of Birth</th>
-                                <th>Gender</th>
-                                <th>Email ID</th>
-                                <th>Contact Info</th>
+                                <th>ACTIVE USER NAME</th>
+                                <th>GAME NAME</th>
+                                <th>EMAIL</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
 
             </div>
-                <script>
-                    function openPage(pageName, elmnt, color) {
-                        var i, tabcontent, tablinks;
-                        tabcontent = document.getElementsByClassName("tabcontent");
-                        for (i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none";
-                        }
-                        tablinks = document.getElementsByClassName("tablink");
-                        for (i = 0; i < tablinks.length; i++) {
-                            tablinks[i].style.backgroundColor = "";
-                        }
-                        document.getElementById(pageName).style.display = "block";
-                        elmnt.style.backgroundColor = color;
+            <script>
+                function openPage(pageName, elmnt, color) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
                     }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].style.backgroundColor = "";
+                    }
+                    document.getElementById(pageName).style.display = "block";
+                    elmnt.style.backgroundColor = color;
+                }
 
-                    // Get the element with id="defaultOpen" and click on it
-                    document.getElementById("defaultOpen").click();
-                </script>
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
 
-            
-    </div>
+
+        </div>
     </div>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-                $.ajax({
-                    url: 'https://localhost:44309/api/Games',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, xhr) {
-                        console.log(data);
+            $.ajax({
+                url: 'https://localhost:44309/api/Games',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
 
-                            $('#datatable1').dataTable({
-                                data: data,
-                                columns: [
-                                    { 'data': 'game_id' },
-                                    { 'data': 'game_name' },
-                                    { 'data': 'release_date' },
-                                    { 'data': 'availability' },
-                                    { 'data': 'game_price' },
-                                    { 'data': 'Genre.genre_name' },
-                                ]
-                            });
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        console.log('Error in Operation');
-                    }
-                });
+                    $('#datatable1').dataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'game_id' },
+                            { 'data': 'game_name' },
+                            { 'data': 'release_date' },
+                            { 'data': 'availability' },
+                            { 'data': 'game_price' },
+                            { 'data': 'Genre.genre_name' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
             $.ajax({
                 url: 'https://localhost:44309/api/User',
                 type: 'GET',
@@ -222,7 +219,30 @@
                     console.log('Error in Operation');
                 }
             });
+
+            $.ajax({
+                url: 'https://localhost:44309/api/Rentals',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    $('#datatable3').dataTable({
+                        data: data,
+                        columns: [
+
+                            { 'data': 'customer_name' },
+                            { 'data': 'game_name' },
+                            { 'data': 'email' },
+                        ]
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
         });
     </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

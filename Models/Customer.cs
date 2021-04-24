@@ -9,8 +9,6 @@
 
 namespace LoginMVC.Models
 {
-  
-    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.Generic;
     
@@ -21,7 +19,6 @@ namespace LoginMVC.Models
         {
             this.Rentals = new HashSet<Rental>();
         }
-        
     
         public int customer_id { get; set; }
         public string customer_name { get; set; }
@@ -34,5 +31,6 @@ namespace LoginMVC.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
+        public string LoginErrorMessage { get; internal set; }
     }
 }
