@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     public class RentalsController : ApiController
     {
         // GET api/<controller>
-        private Game_RentalEntities4 db = new Game_RentalEntities4();
+        private OnlineGameRentAppEntities db = new OnlineGameRentAppEntities();
         // GET api/games
 
         //GET api/games
@@ -42,6 +42,53 @@ namespace LoginMVC.Controllers
             // customer.Add(val);
             //}
             return result;
+        }
+
+        public HttpResponseMessage Post([FromBody] Rental rent)
+        {
+            try
+            {
+
+                int availability = (from g in db.Games
+                                    join r in db.Rentals
+                                    on g.game_id equals r.game_id
+                                    where g.game_id == rent.game_id
+                                    select g.availability).FirstOrDefault();
+
+
+
+                if (availability != 0)
+                {
+                    var entity = db.Games.Find(rent.game_id);
+
+
+
+                    entity.availability = availability - 1;
+
+
+
+                    db.Rentals.Add(rent);
+                    db.SaveChanges();
+                    //return "Data added to database";
+                    var msg = Request.CreateResponse(HttpStatusCode.Created, rent);
+
+
+
+                    return msg;
+                }
+                else
+                {
+                    var msg = Request.CreateErrorResponse(HttpStatusCode.NoContent, "Game availability is not there");
+                    return msg;
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
         }
     }
 }

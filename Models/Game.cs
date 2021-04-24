@@ -22,13 +22,13 @@ namespace LoginMVC.Models
     
         public int game_id { get; set; }
         public string game_name { get; set; }
-        public int genre_id { get; set; }
-        public Nullable<System.DateTime> release_date { get; set; }
-        public Nullable<int> availability { get; set; }
+        public string genre_name { get; set; }
+        public int availability { get; set; }
         public Nullable<int> game_price { get; set; }
+        public Nullable<System.DateTime> release_date { get; set; }
     
-        public virtual Genre Genre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
+        public List<Game> list { get; set; }
     }
 }

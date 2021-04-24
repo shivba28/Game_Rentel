@@ -1,7 +1,5 @@
 ﻿@model LoginMVC.Models.Customer
-@{
-    Layout = null;
-}
+
 
 <!DOCTYPE html>
 
@@ -70,71 +68,24 @@
 
             </form>
             }
+
+            
         </div>
     </div>
     <script>
         $(document).ready(function () {
-            if (model => model.LoginErrorMessage == "email already exists")
-        {
             $('#mybtn').click(function () {
-                alert("Email already exists!");
-            });
-        }
-        else
-        {
-            $('#mybtn').click(function () {
-                alert("Registered Successfully!/nRedirecting you towards Login");
-            });
-        }
-        });
-
-    </script>-->
-
-    <script>
-        $(document).ready(function () {
-            $('#mybtn').click(function () {
-                var User = {
-                    customer_name: $('#customer_name').val(),
-                    dob: $('#dob').val(),
-                    gender: $('#gender').val(),
-                    contact: $('#contact').val(),
-                    email: $('#email').val(),
-                    password: $('#pword').val()
-
-
-
+                if ("@Html.DisplayFor( model=> model.LoginErrorMessage)" == "1") {
+                    alert("Email already exists!");
                 }
-                $.ajax({
-                    url: "https://localhost:44309/api/Users",
-                    type: "POST",
-                    data: User,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        alert("Registered Successfully!");
-                    }
 
-
-
-
-                });
+                else {
+                    alert("Registered Successfully! \nRedirecting to Login.");
+                }
             });
         });
-        $(document).ready(function () {
-            $("#getdata").click(function () {
-                $.ajax({
-                    url: 'https://localhost:44309/api/User',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, xhr) {
-                        console.log(data);
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        console.log('Error in Operation');
-                    }
-                });
-            });
-        });</script>
+    </script>
+
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

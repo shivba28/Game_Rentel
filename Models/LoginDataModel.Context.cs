@@ -13,10 +13,10 @@ namespace LoginMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Game_RentalEntities4 : DbContext
+    public partial class OnlineGameRentAppEntities : DbContext
     {
-        public Game_RentalEntities4()
-            : base("name=Game_RentalEntities4")
+        public OnlineGameRentAppEntities()
+            : base("name=OnlineGameRentAppEntities")
         {
         }
     
@@ -27,7 +27,6 @@ namespace LoginMVC.Models
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
     }
 }

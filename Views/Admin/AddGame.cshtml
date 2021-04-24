@@ -76,13 +76,7 @@
                 <main class="main-content">
                     <h1 style="font-size: 40px;">Add Game</h1>
                     <form>
-                        <select name="genre" class="input" id="genre">
-                            <option value="0">Select Genre</option>
-                            <option value="1">Action</option>
-                            <option value="2">Mystery</option>
-                            <option value="3">Arcade</option>
-                            <option value="4">Racing</option>
-                        </select><br /><br />
+                        <input type="text" placeholder="enter game genre" name="genre_name" id="genre" required />
                         <input type="text" placeholder="enter game name" name="game_name" id="gname" required />
                         <input type="date" name="release_date" id="rdate" required />
                         <input type="number" placeholder="enter availability" name="availability" id="avail" required />
@@ -97,43 +91,12 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('#gname').hide();
-            $('#rdate').hide();
-            $('#avail').hide();
-            $('#gprice').hide();
-            $('#mybtn').hide();
-            $('#mybtn1').hide();
-
-            $('#genre').change(function () {
-                if ($('#genre option:selected').val() != "0") {
-                    $('#gname').show();
-                    $('#rdate').show();
-                    $('#avail').show();
-                    $('#gprice').show();
-                    $('#mybtn').show();
-                    $('#mybtn1').show();
-                }
-
-                else if ($('#genre option:selected').val() == "0") {
-                    $('#gname').hide();
-                    $('#rdate').hide();
-                    $('#avail').hide();
-                    $('#gprice').hide();
-                    $('#mybtn').hide();
-                    $('#mybtn1').hide();
-                }
-            });
-        });
-
-    </script>
-    <script>
 
 
         $(document).ready(function () {
             $("#mybtn").click(function () {
                 var data = {
-                    genre_id: $("#genre").val(),
+                    genre_name: $("#genre").val(),
                     game_name: $("#gname").val(),
                     release_date: $("#rdate").val(),
                     availability: $("#avail").val(),
@@ -143,6 +106,7 @@
                     url: 'https://localhost:44309/api/games/game',
                     type: 'POST',
                     dataType: 'json',
+                    async:false,
                     data: data,
                     success: function (d) {
                         alert("Saved Successfully");
@@ -152,6 +116,7 @@
                         alert("Error please try again");
                     }
                 });
+                window.location.reload();
             });
         });
 

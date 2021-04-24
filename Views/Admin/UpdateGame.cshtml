@@ -182,6 +182,7 @@
                         alert("Error please try again");
                     }
                 });
+                window.location.reload();
             });
         });
     </script>
@@ -192,6 +193,7 @@
                 url: 'https://localhost:44309/api/Games',
                 type: 'GET',
                 dataType: 'json',
+                async: false,
                 success: function (data, textStatus, xhr) {
                     console.log(data);
 
@@ -203,14 +205,16 @@
                             { 'data': 'release_date' },
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
-                            { 'data': 'Genre.genre_name' },
+                            { 'data': 'genre_name' },
                         ]
                     });
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log('Error in Operation');
-                }
+                },
+               
             });
+            
         });
     </script>
     <script src="~/Scripts/jquery.validate.min.js"></script>

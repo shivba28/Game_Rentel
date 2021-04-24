@@ -24,17 +24,20 @@ namespace LoginMVC.Controllers
             ViewBag.errormsg = "wrong email or password";
             return RedirectToAction("Index");
         }
+
+        [Authorize]
         public ActionResult AdminHome()
         {
             return View("AdminHome");
         }
 
+        [Authorize]
         public ActionResult AddGame()
         {
             return View("AddGame");
         }
 
-
+        [Authorize]
         public ActionResult UpdateGame()
         {
             return View("UpdateGame");

@@ -164,17 +164,20 @@
                 var id = $("#g_id").val();
                 console.log(id);
                 $.ajax({
+                    async: false,
                     url: 'https://localhost:44309/api/Games/' + id,
                     type: 'DELETE',
 
                     success: function (d) {
                         alert("deleted Successfully");
+                        
 
                     },
                     error: function () {
                         alert("Error please try again");
                     }
                 });
+                window.location.reload();
             });
         });
 

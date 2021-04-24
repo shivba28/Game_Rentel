@@ -22,20 +22,20 @@ namespace LoginMVC.Controllers
 
         public ActionResult Authorize(string email, string password)
         {
-            using (Game_RentalEntities4 db = new Game_RentalEntities4())
+            using (OnlineGameRentAppEntities db = new OnlineGameRentAppEntities())
             {
                 String pass = encryptpass(password);
                 bool isvalid = db.Customers.Any(x => x.email == email && x.password == pass);
                 if (isvalid)
                 {
                     FormsAuthentication.SetAuthCookie(email, false);
-                    if (Request.Form["ReturnUrl"] != null)
+                    if (Request.Form["ReturnUrl"] == "")
                     {
-                        return Redirect(Request.Form["ReturnUrl"]);
+                        return RedirectToAction("Index", "Customer");
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return Redirect(Request.Form["ReturnUrl"]);
                     }
                 }
 

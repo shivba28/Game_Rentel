@@ -15,7 +15,13 @@ namespace LoginMVC.Controllers
         // GET: Customer
         public ActionResult Index(LoginMVC.Models.Game userModel)
         {
+            using (OnlineGameRentAppEntities db = new OnlineGameRentAppEntities())
+            {
+                var list = (from game_name in db.Games select game_name).ToList();
+                ViewBag.message = list;
                 return View();
+            }
+                
         }
 
         public ActionResult CustomerLogin()
@@ -29,10 +35,15 @@ namespace LoginMVC.Controllers
             return View("Rent");
         }
 
-        [Authorize]
         public ActionResult TopGames()
         {
-            return View("TopGames");
+            using (OnlineGameRentAppEntities db = new OnlineGameRentAppEntities())
+            {
+                var list = (from game_name in db.Rentals select game_name).ToList();
+                ViewBag.message = list;
+                return View("TopGames");
+            }
+            
         }
 
     }
