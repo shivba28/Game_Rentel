@@ -51,7 +51,7 @@
             z-index: -1;
         }
 
-        .card-container2 btn2{
+           .btn2{
             margin-left:40px;
         }
 
@@ -72,6 +72,7 @@
         .card-container2 .card {
             height:350px;
             width: 300px;
+            z-index:-1;
         }
 
         .container {
@@ -101,13 +102,13 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            z-index: 1;
+            z-index: -1;
         }
 
         .container2 {
             position: relative;
             margin-top: -300px;
-            z-index: 2;
+            z-index: 4;
         }
 
         #dearUser {
@@ -169,10 +170,12 @@
                 @if (User.Identity.IsAuthenticated)
                 {
     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li> }
-                                else
-                                {
-                    <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>}
+                    <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+ }
+                else
+                {
+    <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
+}
 
             </ul>
         </div>
@@ -181,26 +184,26 @@
     @using (Html.BeginForm("Rent", "Customer", FormMethod.Post))
     {
 <img class="img1" src="~/Images/crown.png" />
-                <div class="card-container2">
-                    <div class="card">
-                        <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
-                        <div class="container2">
-                            <button type="submit" class="btn btn-block btn-large btn-primary btn2">Rent Now</button>
-                        </div>
-                    </div>
-                </div>
+                                <div class="card-container2">
+                                    <div class="card">
+                                        <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
+                                        <div class="container2">
+                                            <button type="submit" class="btn btn-block btn-large btn-primary btn2">Rent Now</button>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <div class="card-container">
-                    @for (var i = 0; i < games.Length; i++)
-                    {
+                                                <div class="card-container">
+                                                    @for (var i = 0; i < games.Length; i++)
+                                                    {
 
-                    <div class="card c_@i">
-                        <div class="container" style="background-image: url(@games[i]);"></div>
-                        <div class="container2">
-                            <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
-                        </div>
-                    </div>}
-                                </div>}
+                                    <div class="card c_@i">
+                                        <div class="container" style="background-image: url(@games[i]);"></div>
+                                        <div class="container2">
+                                            <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                                        </div>
+                                    </div>}
+                                                </div>}
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
