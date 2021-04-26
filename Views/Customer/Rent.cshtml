@@ -3,161 +3,228 @@
     Layout = null;
 }
 
-
-<html>
-        <head>
-            <meta name="viewport" content="width=device-width" />
-            <title>Rent</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <link href="~/Styles/sass/home.css" rel="stylesheet" />
-           
-            <style>
-                h1 {
-                    font-size: 26px;
-                }
-
-                .bg-image {
-                    /* The image used */
-                    background-image: url(/Images/addgame.jpg);
-                    /* Add the blur effect */
-                    filter: blur(8px);
-                    -webkit-filter: blur(8px);
-                    /* Full height */
-                    height: 110%;
-                    /* Center and scale the image nicely */
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    width: 100%;
-                    z-index: -1;
-                }
-
-                .card-container {
-                    margin-top: -100px;
-                    height: 600px;
-                    width: 98%;
-                }
-
-                .card {
-                    opacity: 1;
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    z-index: 2;
-                    width: 400px;
-                    height: 540px;
-                }
-
-                .container {
-                    position: relative;
-                    background-color: transparent;
-                    opacity: 0.7;
-                    height: 540px;
-                    width: 400px;
-                    margin-left: -15px;
-                    margin-top: -15px;
-                    border-radius: 25px;
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    z-index: 1;
-                }
-
-                .container2 {
-                    position: relative;
-                    margin-top: -300px;
-                    z-index: 2;
-                }
-
-                #dearUser {
-                    color: black;
-                    font-size: 20px;
-                    margin-top: 10px;
-                    font-style: italic;
-                }
-
-                .btn {
-                    width: 200px;
-                    margin-left: 80px;
-                    margin-top: 250px;
-                }
-
-
-                .tags {
-                    color: white;
-                }
-
-                .date {
-                    color: black;
-                }
-
-                a {
-                    font-size: 18px;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="bg-image"></div>
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand"><u>Video Game Rental Store</u></a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
-                        <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
-                        <li><a href="#">Contact Us</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
-                            <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li>
-                        }
-                        else
-                        {
-                            <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
+@{
+    var game_name = ViewBag.Message;
 }
 
 
-                    </ul>
-                </div>
-            </nav>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rent</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="~/Styles/sass/home.css" rel="stylesheet" />
 
-            <div class="container">
-                <h3>Game Details</h3>
-                <p>Game Name:</p>
+    <style>
+        h1 {
+            font-size: 26px;
+        }
+        #dearUser {
+            color: black;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .bg-image {
+            /* The image used */
+            background-image: url(/Images/addgame.jpg);
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            /* Full height */
+            height: 110%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .card-container {
+            position: relative;
+            margin-top: -400px;
+            height: 400px;
+            width: 40%;
+            margin-left: 50%;
+        }
+
+        .card-container2 {
+            position: relative;
+            margin-top: 120px;
+            height: 400px;
+            width: 23%;
+            margin-left: 6.5%;
+        }
+
+        .card:hover ~ .card {
+            transform: translateX(150px);
+        }
+
+        .card {
+            opacity: 1;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 2;
+            width: 300px;
+            height: 350px;
+        }
+
+        .card-container2 .card {
+            height: 350px;
+            width: 300px;
+        }
+
+        .container {
+            position: relative;
+            background-color: transparent;
+            opacity: 0.7;
+            height: 350px;
+            width: 300px;
+            margin-left: -15px;
+            margin-top: -15px;
+            border-radius: 25px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .card-container2 .container {
+            position: relative;
+            background-color: transparent;
+            opacity: 0.7;
+            height: 350px;
+            width: 300px;
+            margin-left: -15px;
+            margin-top: -15px;
+            border-radius: 25px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .container2 {
+            position: relative;
+            margin-top: -250px;
+            margin-left: 150px;
+            z-index: 2;
+        }
+
+        #dearUser {
+            color: black;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .btn {
+            width: 200px;
+            margin-left: 30px;
+            margin-top: 250px;
+        }
+
+
+        .tags {
+            color: white;
+        }
+
+        .date {
+            color: black;
+        }
+
+        a {
+            font-size: 18px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand"><u>Video Game Rental Store</u></a>
             </div>
-            <script>
-                $(document).ready(function () {
-                    $("#mybtn").click(function () {
-                        var data = {
-                            genre_id: $("#genre").val(),
-                            game_name: $("#gname").val(),
-                            release_date: $("#rdate").val(),
-                            availability: $("#avail").val(),
-                            game_price: $("#gprice").val(),
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
+                <li>
+                <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
+                    <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li>
+                }
+                else
+                {
+                    <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
+                }
+
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="card-container2">
+        <div class="card">
+            <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
+            <div class="container2">
+
+            </div>
+        </div>
+    </div>
+    <div class="card-container" style="display:block;">
+        <h1 style="font-size: 40px; margin-left:27.5%;">Game Details</h1><br />
+        <hr style="margin-top:-20px;"/>
+        <ul style="font-size: 30px; padding: 20px;">
+            <li>Game Name:</li>
+            <li>Genre:</li>
+            <li>Release Date:</li>
+            <li>Price:</li>
+        </ul>
+        <div class="container2">
+            <button type="submit" class="btn btn-block btn-large btn-primary">Confirm Rent</button>
+        </div>
+    </div>
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/jquery-1.4.4.js"></script>
+        <script>
+           /* $(document).ready(function () {
+                $("#mybtn").click(function () {
+                    var data = {
+                        genre_id: $("#genre").val(),
+                        game_name: $("#gname").val(),
+                        release_date: $("#rdate").val(),
+                        availability: $("#avail").val(),
+                        game_price: $("#gprice").val(),
+                    }
+                    $.ajax({
+                        url: 'https://localhost:44309/api/rentals',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        success: function (d) {
+                            alert("Game rented successfuly");
+                            document.getElementById("postform").reset();
+                        },
+                        error: function () {
+                            alert("Error please try again");
                         }
-                        $.ajax({
-                            url: 'https://localhost:44309/api/games/game',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: data,
-                            success: function (d) {
-                                alert("Saved Successfully");
-                                document.getElementById("postform").reset();
-                            },
-                            error: function () {
-                                alert("Error please try again");
-                            }
-                        });
                     });
                 });
+            });*/
 
-            </script>
-            <script src="~/Scripts/jquery.validate.min.js"></script>
-            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        </body>
+        </script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
 </html>

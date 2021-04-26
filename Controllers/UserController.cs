@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     
     public class UserController : ApiController
     {
-        private OnlineGameRentAppEntities db = new OnlineGameRentAppEntities();
+        private OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
         // GET api/values
         public List<Customer> Get()
         {

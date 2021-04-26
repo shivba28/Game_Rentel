@@ -166,7 +166,7 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index")</li>
                 <li class="active">@Html.ActionLink("Top 5 Games", "TopGames")</li>
-                <li><a href="#">Contact Us</a></li>
+                <li><li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>

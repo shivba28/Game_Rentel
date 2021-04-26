@@ -34,7 +34,7 @@ namespace LoginMVC.Controllers
             else
             {
                 ModelState.AddModelError(" ", "Invalid email or Password");
-                return View("Index");
+                return RedirectToAction("Index");
             }
 
 
@@ -64,11 +64,12 @@ namespace LoginMVC.Controllers
             return View("DeleteGame");
         }
 
-
-        public ActionResult ActiveList()
+        public ActionResult Logout()
         {
-            return View("ActiveList");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
+
     }
 
 }

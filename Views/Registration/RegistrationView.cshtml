@@ -42,52 +42,85 @@
         #dob {
             width:220px;
         }
+
+        body {
+            background-color: black;
+            z-index: -2;
+        }
+
+        .bg-image {
+            /* The image used */
+            background-image: url(/Images/addgame.jpg);
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            z-index: -1;
+        }
+        a {
+            font-size: 18px;
+        }
     </style>
 
 </head>
 <body>
     <div class="bg-image"></div>
     <div class="container">
+        <div class="box2">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand"><u>Video Game Rental Store</u></a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                        <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
+                        <li>
+                        <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
         <div class="box">
             @using (Html.BeginForm("AuthorizeReg", "Registration", FormMethod.Post))
             {
-            <form>
-                <h1><u>Registration</u></h1>
-                <input type="text" name="customer_name" placeholder="enter name" id="customer_name" required /><br /><br />
-                <input type="date" name="dob" id="dob" required /><br /><br />
-                Male<input type="radio" name="gender" id="male" value="Male" style="margin-right:30px;"/>&nbsp;&nbsp;
-                Female<input type="radio" name="gender" id="female" value="Female" /><br /><br />
-                <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />
-                <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
-                <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
-                <div class="btndiv">
-                    <button type="submit" id="mybtn" class="btn btn-block btn-large btn-primary">SUBMIT</button>
-                    <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
-                </div>
-                <p>Registered Already? Login <a href="~/Login/Index">here</a></p>
+                <form>
+                    <h1><u>Registration</u></h1>
+                    <input type="text" name="customer_name" placeholder="enter name" id="customer_name" required /><br /><br />
+                    <input type="date" name="dob" id="dob" required /><br /><br />
+                    Male<input type="radio" name="gender" id="male" value="Male" style="margin-right:30px;" />&nbsp;&nbsp;
+                    Female<input type="radio" name="gender" id="female" value="Female" /><br /><br />
+                    <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />
+                    <input type="email" name="email" placeholder="enter email" id="email" required /><br /><br />
+                    <input type="password" name="password" placeholder="enter password" id="pword" required /><br /><br />
+                    <div class="btndiv">
+                        <button type="submit" id="mybtn" class="btn btn-block btn-large btn-primary">SUBMIT</button>
+                        <button type="reset" class="btn btn-block btn-large btn-primary">CLEAR</button><br /><br />
+                    </div>
+                    <p>Registered Already? Login <a href="~/Login/Index">here</a></p>
 
-            </form>
+                </form>
             }
 
-            
+
         </div>
     </div>
-    <script>
+        <script>
         $(document).ready(function () {
             $('#mybtn').click(function () {
-                if ("@Html.DisplayFor( model=> model.LoginErrorMessage)" == "1") {
-                    alert("Email already exists!");
-                }
-
-                else {
-                    alert("Registered Successfully! \nRedirecting to Login.");
-                }
             });
         });
-    </script>
+        </script>
 
 
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

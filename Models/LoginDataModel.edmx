@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineGameRentAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OnlineGameRentalStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="customer_id" />
@@ -27,19 +27,20 @@
           <Property Name="availability" Type="int" Nullable="false" />
           <Property Name="game_price" Type="int" />
           <Property Name="release_date" Type="date" />
+          <Property Name="imagepath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Rental">
           <Key>
             <PropertyRef Name="rental_id" />
           </Key>
           <Property Name="rental_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="customer_id" Type="int" />
-          <Property Name="game_id" Type="int" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="game_id" Type="int" Nullable="false" />
           <Property Name="return_date" Type="date" />
           <Property Name="rented_on" Type="date" />
         </EntityType>
         <Association Name="FK_Rental_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -51,7 +52,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rental_Game">
-          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
           <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Game">
@@ -62,7 +63,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OnlineGameRentAppModelStoreContainer">
+        <EntityContainer Name="OnlineGameRentalStoreModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rental" EntityType="Self.Rental" Schema="dbo" store:Type="Tables" />
@@ -79,7 +80,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="OnlineGameRentAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="OnlineGameRentalStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="customer_id" />
@@ -103,6 +104,7 @@
           <Property Name="availability" Type="Int32" Nullable="false" />
           <Property Name="game_price" Type="Int32" />
           <Property Name="release_date" Type="DateTime" Precision="0" />
+          <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Rentals" Relationship="Self.FK_Rental_Game" FromRole="Game" ToRole="Rental" />
         </EntityType>
         <EntityType Name="Rental">
@@ -110,15 +112,15 @@
             <PropertyRef Name="rental_id" />
           </Key>
           <Property Name="rental_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customer_id" Type="Int32" />
-          <Property Name="game_id" Type="Int32" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="game_id" Type="Int32" Nullable="false" />
           <Property Name="return_date" Type="DateTime" Precision="0" />
           <Property Name="rented_on" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Rental_Customer" FromRole="Rental" ToRole="Customer" />
           <NavigationProperty Name="Game" Relationship="Self.FK_Rental_Game" FromRole="Rental" ToRole="Game" />
         </EntityType>
         <Association Name="FK_Rental_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -130,7 +132,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rental_Game">
-          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
           <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Game">
@@ -141,7 +143,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OnlineGameRentAppEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OnlineGameRentalStoreEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Rentals" EntityType="Self.Rental" />
@@ -159,9 +161,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OnlineGameRentAppModelStoreContainer" CdmEntityContainer="OnlineGameRentAppEntities">
+        <EntityContainerMapping StorageEntityContainer="OnlineGameRentalStoreModelStoreContainer" CdmEntityContainer="OnlineGameRentalStoreEntities">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="OnlineGameRentAppModel.Customer">
+            <EntityTypeMapping TypeName="OnlineGameRentalStoreModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="customer_name" ColumnName="customer_name" />
@@ -174,7 +176,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="OnlineGameRentAppModel.Game">
+            <EntityTypeMapping TypeName="OnlineGameRentalStoreModel.Game">
               <MappingFragment StoreEntitySet="Game">
                 <ScalarProperty Name="game_id" ColumnName="game_id" />
                 <ScalarProperty Name="game_name" ColumnName="game_name" />
@@ -182,11 +184,12 @@
                 <ScalarProperty Name="availability" ColumnName="availability" />
                 <ScalarProperty Name="game_price" ColumnName="game_price" />
                 <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="imagepath" ColumnName="imagepath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rentals">
-            <EntityTypeMapping TypeName="OnlineGameRentAppModel.Rental">
+            <EntityTypeMapping TypeName="OnlineGameRentalStoreModel.Rental">
               <MappingFragment StoreEntitySet="Rental">
                 <ScalarProperty Name="rental_id" ColumnName="rental_id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />

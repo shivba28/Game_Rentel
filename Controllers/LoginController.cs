@@ -22,7 +22,7 @@ namespace LoginMVC.Controllers
 
         public ActionResult Authorize(string email, string password)
         {
-            using (OnlineGameRentAppEntities db = new OnlineGameRentAppEntities())
+            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {
                 String pass = encryptpass(password);
                 bool isvalid = db.Customers.Any(x => x.email == email && x.password == pass);

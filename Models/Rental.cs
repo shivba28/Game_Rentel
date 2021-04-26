@@ -15,8 +15,8 @@ namespace LoginMVC.Models
     public partial class Rental
     {
         public int rental_id { get; set; }
-        public Nullable<int> customer_id { get; set; }
-        public Nullable<int> game_id { get; set; }
+        public int customer_id { get; set; }
+        public int game_id { get; set; }
         public Nullable<System.DateTime> return_date { get; set; }
         public Nullable<System.DateTime> rented_on { get; set; }
     

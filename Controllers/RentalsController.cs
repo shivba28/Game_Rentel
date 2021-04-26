@@ -11,7 +11,7 @@ namespace LoginMVC.Controllers
     public class RentalsController : ApiController
     {
         // GET api/<controller>
-        private OnlineGameRentAppEntities db = new OnlineGameRentAppEntities();
+        private OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
         // GET api/games
 
         //GET api/games
@@ -43,7 +43,16 @@ namespace LoginMVC.Controllers
             //}
             return result;
         }
-
+        public int Get(int id)
+        {
+            int res = (from r in db.Rentals where r.game_id == id select r.game_id).FirstOrDefault();
+            //  var user = db.Rentals.Find(id);
+            if (res != 0) { return 1; }
+            else
+            {
+                return 0;
+            }
+        }
         public HttpResponseMessage Post([FromBody] Rental rent)
         {
             try
@@ -90,5 +99,6 @@ namespace LoginMVC.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
             }
         }
+
     }
 }

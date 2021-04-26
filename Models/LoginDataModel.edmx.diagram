@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="57f9fdd6566e404c940aa37e9254b649" Name="Diagram1">
-        <EntityTypeShape EntityType="OnlineGameRentAppModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineGameRentAppModel.Game" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineGameRentAppModel.Rental" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="OnlineGameRentAppModel.FK_Rental_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineGameRentAppModel.FK_Rental_Game" ManuallyRouted="false" />
+      <Diagram DiagramId="85a290dbf14b417da3babd57cdac782e" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineGameRentalStoreModel.Customer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineGameRentalStoreModel.Game" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineGameRentalStoreModel.Rental" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="OnlineGameRentalStoreModel.FK_Rental_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineGameRentalStoreModel.FK_Rental_Game" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -125,6 +125,13 @@
                 <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+            <li id="dearUser" style="display:block; font-size:70px;">
+                <label style="font-size:50px;">Dear - @User.Identity.Name</label>
+                @Html.ActionLink("Logout", "Logout", "Admin")
+            </li>
+                }
             </ul>
         </nav>
         <div class="container">
@@ -157,30 +164,45 @@
         </div>
     </div>
     <script>
-
-
         $(document).ready(function () {
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
-                console.log(id);
+
                 $.ajax({
-                    async: false,
                     url: 'https://localhost:44309/api/Games/' + id,
                     type: 'DELETE',
 
                     success: function (d) {
+                        console.log(d);
                         alert("deleted Successfully");
-                        
 
                     },
-                    error: function () {
-                        alert("Error please try again");
-                    }
+
+                    error: function (e) {
+
+                        $.ajax({
+                            url: 'https://localhost:44309/api/Rentals/' + id,
+                            type: 'GET',
+
+                            success: function (d) {
+                                console.log(d);
+                                if (d == 1) { alert("Game is rented... Cannot delete the game.. please try again"); }
+                                else { alert("invalid game Id.. please try again"); }
+
+                            },
+
+
+
+
+
+                        });
+
+                    },
+
+
                 });
-                window.location.reload();
             });
         });
-
     </script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -201,7 +223,7 @@
                             { 'data': 'release_date' },
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
-                            { 'data': 'Genre.genre_name' },
+                            { 'data': 'genre_name' },
                         ]
                     });
                 },

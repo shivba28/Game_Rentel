@@ -37,21 +37,24 @@
                 margin-left: 15px;
             }
 
+
         li {
             font-size: 70px;
         }
 
         table {
-            width: 1000px;
             margin-left: 250px;
             margin-bottom: 20px;
+            
         }
 
         body {
             overflow-y: scroll;
         }
 
-
+        #News #datatable2{
+            width:1000px;
+        }
         .container .box {
             width: 1500px;
             margin-left: -550px;
@@ -98,6 +101,11 @@
                 <li>@Html.ActionLink("Add Game", "AddGame")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li id="dearUser" style="display:block; font-size:70px;"><label style="font-size:50px;">Dear - @User.Identity.Name</label>
+                    @Html.ActionLink("Logout", "Logout", "Admin")</li>
+                }
             </ul>
         </nav>
         <div class="container">
@@ -107,7 +115,7 @@
                 <button class="tablink" onclick="openPage('Contact', this, '#555')">Active Users List</button>
 
                 <div id="Home" class="tabcontent">
-                    <table id="datatable1">
+                    <table id="datatable1" style="width:1000px;">
                         <thead>
                             <tr>
                                 <th>Game ID</th>
@@ -121,8 +129,8 @@
                     </table>
                 </div>
 
-                <div id="News" class="tabcontent">
-                    <table id="datatable2">
+                <div id="News" class="tabcontent" >
+                    <table id="datatable2" style="width: 70%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -137,7 +145,7 @@
                 </div>
 
                 <div id="Contact" class="tabcontent">
-                    <table id="datatable3" style="margin-left:400px;">
+                    <table id="datatable3" style="width: 65%;">
                         <thead>
                             <tr>
                                 <th>ACTIVE USER NAME</th>
@@ -186,7 +194,17 @@
                         columns: [
                             { 'data': 'game_id' },
                             { 'data': 'game_name' },
-                            { 'data': 'release_date' },
+                            {
+                                'data': 'release_date',
+                                               "render": function (data) {
+                                    if (data !== null) {
+                                        var javascriptDate = new Date(data);
+                                        javascriptDate = javascriptDate.getMonth() + 1 + "-" + javascriptDate.getDate() + "-" + javascriptDate.getFullYear();
+                                        return javascriptDate;
+                                    } else {
+                                        return "";
+                                    }
+                                }},
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
                             { 'data': 'genre_name' },

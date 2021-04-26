@@ -26,9 +26,9 @@ namespace LoginMVC.Models
         public int availability { get; set; }
         public Nullable<int> game_price { get; set; }
         public Nullable<System.DateTime> release_date { get; set; }
+        public string imagepath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
-        public List<Game> list { get; set; }
     }
 }

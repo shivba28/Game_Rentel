@@ -10,9 +10,10 @@
 
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Styles/game.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -23,13 +24,13 @@
             display: block;
             width: 200px;
             margin-top: 50px;
-            margin-left:80px;
+            margin-left: 80px;
         }
 
         input {
             border-radius: 50px;
             color: white;
-            margin-bottom:10px;
+            margin-bottom: 10px;
         }
 
 
@@ -69,6 +70,13 @@
                 <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+            <li id="dearUser" style="display:block; font-size:70px;">
+                <label style="font-size:50px; color: white;">Dear - @User.Identity.Name</label>
+                @Html.ActionLink("Logout", "Logout", "Admin")
+            </li>
+                }
             </ul>
         </nav>
         <div class="container">

@@ -20,13 +20,13 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AuthorizeReg(LoginMVC.Models.Customer userModel)
         {
-            using (OnlineGameRentAppEntities db = new OnlineGameRentAppEntities())
+            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {
                 Customer cust = new Customer();
                 var eid = db.Customers.Any(x => x.email == userModel.email);
                 if (eid)
                 {
-                    userModel.LoginErrorMessage = "1";
+                    //userModel.LoginErrorMessage = "1";
                     return View("RegistrationView", userModel);
                 }
 
@@ -55,6 +55,7 @@ namespace LoginMVC.Controllers
             msg = Convert.ToBase64String(encode);
             return msg;
         }
+
 
 
     }
