@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Text;
 
 namespace LoginMVC.Controllers
 {
@@ -17,40 +19,57 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AdminLogin(string email, string password)
         {
-            if(email=="Admin@gmail.com" && password=="Admin")
+            if (email == "Admin@gmail.com" && password == "Admin")
             {
-                return View("AdminHome");
+                FormsAuthentication.SetAuthCookie(email, false);
+                if (Request.Form["ReturnUrl"] == "")
+                {
+                    return RedirectToAction("AdminHome", "Admin");
+                }
+                else
+                {
+                    return Redirect(Request.Form["ReturnUrl"]);
+                }
             }
-            ViewBag.errormsg = "wrong email or password";
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError(" ", "Invalid email or Password");
+                return RedirectToAction("Index");
+            }
+
+
         }
+
+        [Models.AuthorizeUser]
         public ActionResult AdminHome()
         {
             return View("AdminHome");
         }
 
+        [Models.AuthorizeUser]
         public ActionResult AddGame()
         {
             return View("AddGame");
         }
 
-
+        [Models.AuthorizeUser]
         public ActionResult UpdateGame()
         {
             return View("UpdateGame");
         }
 
-
+        [Models.AuthorizeUser]
         public ActionResult DeleteGame()
         {
             return View("DeleteGame");
         }
 
-
-        public ActionResult ActiveList()
+        public ActionResult Logout()
         {
-            return View("ActiveList");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
+
     }
 
 }

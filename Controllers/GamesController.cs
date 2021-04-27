@@ -10,7 +10,7 @@ namespace LoginMVC.Controllers
 {
     public class GamesController : ApiController
     {
-        private Game_RentalEntities4 db = new Game_RentalEntities4();
+        private OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
         // GET api/games
         public List<Game> Get()
         {
@@ -42,12 +42,26 @@ namespace LoginMVC.Controllers
            
         }
 
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
-            var data = db.Games.Find(id);
-            db.Games.Remove(data);
-            db.SaveChanges();
+            try
+            {
+                var data = db.Games.Find(id);
+                db.Games.Remove(data);
+                db.SaveChanges();
+                var msg = Request.CreateResponse(HttpStatusCode.Created, data);
+
+                return msg;
+            }
+            catch (Exception e)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+
         }
+
+
         public void Put(int id, [FromBody] Game game)
         {
             var data = db.Games.Find(id);

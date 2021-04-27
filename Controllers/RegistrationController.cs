@@ -20,19 +20,19 @@ namespace LoginMVC.Controllers
         [HttpPost]
         public ActionResult AuthorizeReg(LoginMVC.Models.Customer userModel)
         {
-            using (Game_RentalEntities4 db = new Game_RentalEntities4())
+            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {
                 Customer cust = new Customer();
                 var eid = db.Customers.Any(x => x.email == userModel.email);
                 if (eid)
                 {
-                    userModel.LoginErrorMessage = "email already exist";
+                    //userModel.LoginErrorMessage = "1";
                     return View("RegistrationView", userModel);
                 }
 
 
                 else
-                {
+                { 
                     cust.customer_name = userModel.customer_name;
                     cust.dob = userModel.dob;
                     cust.gender = userModel.gender;
@@ -55,6 +55,7 @@ namespace LoginMVC.Controllers
             msg = Convert.ToBase64String(encode);
             return msg;
         }
+
 
 
     }

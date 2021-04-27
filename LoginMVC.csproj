@@ -365,6 +365,7 @@
     <Content Include="Images\forza.jpg" />
     <Content Include="Images\gta.jpg" />
     <Content Include="Images\hzd.jpg" />
+    <Content Include="Images\shivba.jpg" />
     <Content Include="Images\main.jpg" />
     <Content Include="Images\pop.jpg" />
     <Content Include="Images\pubg.jpg" />
@@ -388,8 +389,12 @@
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
       <LastGenOutput>LoginDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr.js" />
     <Content Include="Styles\adminhome.css" />
     <Content Include="Styles\game.css" />
+    <Content Include="Styles\reset.css" />
     <Content Include="Styles\sass\home.css" />
     <Content Include="Styles\sass\layout\_content.scss" />
     <Content Include="Styles\sass\layout\_footer.scss" />
@@ -418,6 +423,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Styles\style.css" />
     <Content Include="Styles\StyleSheet1.css">
       <DependentUpon>StyleSheet1.scss</DependentUpon>
     </Content>
@@ -432,23 +438,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
-    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Controllers\Top5Controller.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\UserLoginAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs">
-      <DependentUpon>LoginDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Genre.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginDataModel.Context.cs">
@@ -486,6 +488,11 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Rent.cshtml" />
     <Content Include="Views\Customer\TopGames.cshtml" />
+    <Content Include="Views\Customer\AboutUs.cshtml" />
+    <Content Include="Styles\style.scss" />
+    <Content Include="Styles\_layout.scss" />
+    <Content Include="Styles\_mixins.scss" />
+    <Content Include="Styles\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

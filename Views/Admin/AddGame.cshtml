@@ -10,9 +10,10 @@
 
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/Styles/game.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
     <link href="~/Styles/StyleSheet1.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
@@ -23,13 +24,13 @@
             display: block;
             width: 200px;
             margin-top: 50px;
-            margin-left:80px;
+            margin-left: 80px;
         }
 
         input {
             border-radius: 50px;
             color: white;
-            margin-bottom:10px;
+            margin-bottom: 10px;
         }
 
 
@@ -69,6 +70,13 @@
                 <li>@Html.ActionLink("Home", "AdminHome")</li>
                 <li>@Html.ActionLink("Update Game", "UpdateGame")</li>
                 <li>@Html.ActionLink("Delete Game", "DeleteGame")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+            <li id="dearUser" style="display:block; font-size:70px;">
+                <label style="font-size:50px; color: white;">Dear - @User.Identity.Name</label>
+                @Html.ActionLink("Logout", "Logout", "Admin")
+            </li>
+                }
             </ul>
         </nav>
         <div class="container">
@@ -76,13 +84,7 @@
                 <main class="main-content">
                     <h1 style="font-size: 40px;">Add Game</h1>
                     <form>
-                        <select name="genre" class="input" id="genre">
-                            <option value="0">Select Genre</option>
-                            <option value="1">Action</option>
-                            <option value="2">Mystery</option>
-                            <option value="3">Arcade</option>
-                            <option value="4">Racing</option>
-                        </select><br /><br />
+                        <input type="text" placeholder="enter game genre" name="genre_name" id="genre" required />
                         <input type="text" placeholder="enter game name" name="game_name" id="gname" required />
                         <input type="date" name="release_date" id="rdate" required />
                         <input type="number" placeholder="enter availability" name="availability" id="avail" required />
@@ -97,43 +99,12 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('#gname').hide();
-            $('#rdate').hide();
-            $('#avail').hide();
-            $('#gprice').hide();
-            $('#mybtn').hide();
-            $('#mybtn1').hide();
-
-            $('#genre').change(function () {
-                if ($('#genre option:selected').val() != "0") {
-                    $('#gname').show();
-                    $('#rdate').show();
-                    $('#avail').show();
-                    $('#gprice').show();
-                    $('#mybtn').show();
-                    $('#mybtn1').show();
-                }
-
-                else if ($('#genre option:selected').val() == "0") {
-                    $('#gname').hide();
-                    $('#rdate').hide();
-                    $('#avail').hide();
-                    $('#gprice').hide();
-                    $('#mybtn').hide();
-                    $('#mybtn1').hide();
-                }
-            });
-        });
-
-    </script>
-    <script>
 
 
         $(document).ready(function () {
             $("#mybtn").click(function () {
                 var data = {
-                    genre_id: $("#genre").val(),
+                    genre_name: $("#genre").val(),
                     game_name: $("#gname").val(),
                     release_date: $("#rdate").val(),
                     availability: $("#avail").val(),
@@ -143,6 +114,7 @@
                     url: 'https://localhost:44309/api/games/game',
                     type: 'POST',
                     dataType: 'json',
+                    async:false,
                     data: data,
                     success: function (d) {
                         alert("Saved Successfully");
@@ -152,6 +124,7 @@
                         alert("Error please try again");
                     }
                 });
+                window.location.reload();
             });
         });
 

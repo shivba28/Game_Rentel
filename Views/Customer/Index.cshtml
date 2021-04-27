@@ -1,171 +1,181 @@
-﻿   @{ Layout = null; }
+﻿@using LoginMVC.Models
 
-@{   string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" };
-            }
-
-    <!DOCTYPE html>
+@{ string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" };
+}
 
 
-        <html>
-        <head>
-            <meta name="viewport" content="width=device-width" />
 
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <link href="~/Styles/sass/home.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <style>
-                .bg-image {
-                    /* The image used */
-                    background-image: url(/Images/addgame.jpg);
-                    /* Add the blur effect */
-                    filter: blur(8px);
-                    -webkit-filter: blur(8px);
-                    /* Full height */
-                    height: 110%;
-                    /* Center and scale the image nicely */
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    width: 100%;
-                    z-index: -1;
-                }
+@{
+    var game_name = ViewBag.Message;
+}
 
-                .card-container{
-                    margin-top:-100px;
-                    height: 600px;
-                    width: 98%;
-                 
-                }
-
-                .card {
-                    opacity: 1;
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    z-index: 2;
-                    width: 400px;
-                    height:540px;
-                }
-
-                .container {
-                    position: relative;
-                    background-color: transparent;
-                    opacity: 0.7;
-                    height: 540px;
-                    width: 400px;
-                    margin-left: -15px;
-                    margin-top: -15px;
-                    border-radius: 25px;
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    z-index: 1;
-                }
-
-                .container2 {
-                    position: relative;
-                    margin-top: -300px;
-                    z-index: 2;
-                }
-
-                #dearUser {
-                    color: black;
-                    font-size: 20px;
-                    margin-top: 10px;
-                    font-style: italic;
-                }
-                .btn {
-                    width: 200px;
-                    margin-left: 80px;
-                    margin-top: 250px;
-                }
+<!DOCTYPE html>
 
 
-                .tags{
-                    color:white;
-                }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
 
-                .date{
-                    color:black;
-                }
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="~/Styles/sass/home.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: black;
+            z-index: -2;
+        }
 
-                a{
-                    font-size:18px;
-                }
+        .bg-image {
+            /* The image used */
+            background-image: url(/Images/addgame.jpg);
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            z-index: -1;
+        }
 
-            </style>
-            <title>Home</title>
-        </head>
-        <body>
-            <div class="bg-image"></div>
+        .card-container {
+            margin-top: -50px;
+            height: 600px;
+            width: 98%;
+        }
 
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand"><u>Video Game Rental Store</u></a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li class="active" >@Html.ActionLink("Home", "Index", "Customer")</li>
-                        <li >@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
-                        <li ><a href="#">Contact Us</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
+        .card {
+            opacity: 1;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 2;
+            width: 400px;
+            height: 540px;
+        }
+
+        .container {
+            position: relative;
+            background-color: transparent;
+            opacity: 0.7;
+            height: 540px;
+            width: 400px;
+            margin-left: -15px;
+            margin-top: -15px;
+            border-radius: 25px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        .container2 {
+            position: relative;
+            margin-top: -300px;
+            z-index: 2;
+        }
+
+        #dearUser {
+            color: black;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .btn {
+            width: 200px;
+            margin-left: 85px;
+            margin-top: 250px;
+        }
+
+
+        .tags {
+            color: white;
+        }
+
+        .date {
+            color: black;
+        }
+
+        a {
+            font-size: 18px;
+        }
+    </style>
+    <title>Home</title>
+</head>
+<body>
+    <div class="bg-image"></div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand"><u>Video Game Rental Store</u></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
+                <li><li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
-                    <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li> }
-                        else
-                        {
-                         <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
-                         }
+                    <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li>
+                }
+                else
+                {
+                    <li style="padding-left:860px;">@Html.ActionLink("Login", "Index", "Login")</li>
+                }
 
 
-                    </ul>
+            </ul>
 
-                </div>
-            </nav>
+        </div>
+    </nav>
 
-
-            @using (Html.BeginForm("Rent", "Customer"))
-            {
+    @using (Html.BeginForm("Rent", "Customer"))
+    {
         <div class="card-container">
-                @for (var i = 0; i < games.Length; i++)
+            @for (var i = 0; i < game_name.Count; i++)
             {
 
-            <div class="card c_@i">
-                <div class="container" style="background-image: url(@games[i]);"></div>
-                <div class="container2">
-                    <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                <div class="card c_@i" value="@game_name[i].game_name">
+                    <div class="container" style="background-image: url(@games[i]);"></div>
+                    <div class="container2">
+                        <button type="submit" class="btn btn-block btn-large btn-primary">@game_name[i].game_name</button>
+                    </div>
                 </div>
+                }
             </div>
             }
-        </div>
-            }
 
-                <script src="~/Scripts/jquery-1.10.2.js"></script>
-                <script src="~/Scripts/jquery-1.4.4.js"></script>
-                <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-                <script>
-                    $(document).ready(function () {
-                        $('.c_0').hide();
-                        var game_name;
-                        $.ajax({
-                            url: 'https://localhost:44309/api/games',
-                            type: 'GET',
-                            async: false,
-                            dataType: 'json',
-                            success: function (data, textStatus, xhr) {
-                                console.log(data);
-                                game_name = data[0].game_name;
-                            },
-                            error: function (xhr, textStatus, errorThrown) {
-                                console.log('Error in Operation');
+            <script src="~/Scripts/jquery-1.10.2.js"></script>
+            <script src="~/Scripts/jquery-1.4.4.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script>
+
+                $(document).ready(function () {
+                    var game_name = [];
+
+                    $.ajax({
+                        url: 'https://localhost:44309/api/games',
+                        type: 'GET',
+                        async: false,
+                        dataType: 'json',
+                        success: function (data, textStatus, xhr) {
+                            for (var i = 0; i < data.length; i++) {
+                                game_name.push(data[i].game_name);
                             }
-
-                        });
-
-                        if (game_name == "POP") {
-                            $('.c_0').show();
+                            console.log(game_name);
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log('Error in Operation');
                         }
-                    });</script>
-            </body>
+
+                    });
+
+                });</script>
+        </body>
     </html>
