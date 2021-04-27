@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddImage</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+        <input type="file" placeholder="Please upload Image" name="img" id="fupload" required />
+        <input type="submit" id="mybtn" value="upload" />
+
+    <script>
+        $(document).ready(function () {
+            alert("hello");
+            jQuery('#mybtn').click(function (evt) {
+                console.log("hi");
+                var fileUpload = jQuery("#fupload").get(0);
+                var files = fileUpload.files;
+
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+
+                $.ajax({
+                    url: "https://localhost:44309/api/DocumentUpload/MediaUpload",
+                    type: "POST",
+                    data: data,
+                    async: false,
+                    success: function (result) { alert(result); },
+                    error: function (err) {
+                        alert(err.statusText)
+                    }
+                });
+                evt.preventDefault();
+            });
+
+        });
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

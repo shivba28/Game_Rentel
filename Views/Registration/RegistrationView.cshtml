@@ -14,6 +14,9 @@
     <title>Registration</title>
 
     <style>
+        input{
+            z-index: 4;
+        }
         .btndiv {
             width:200px;
             margin-left:100px;
@@ -94,7 +97,7 @@
                 <form>
                     <h1><u>Registration</u></h1>
                     <input type="text" name="customer_name" placeholder="enter name" id="customer_name" required /><br /><br />
-                    <input type="date" name="dob" id="dob" required /><br /><br />
+                    <label>DOB:</label><input type="date" name="dob" id="dob" required /><br /><br />
                     Male<input type="radio" name="gender" id="male" value="Male" style="margin-right:30px;" />&nbsp;&nbsp;
                     Female<input type="radio" name="gender" id="female" value="Female" /><br /><br />
                     <input type="tel" name="contact" id="contact" placeholder="enter mobile number" required /><br /><br />

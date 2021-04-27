@@ -157,7 +157,7 @@
                 <a class="navbar-brand"><u>Video Game Rental Store</u></a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                <li>@Html.ActionLink("Home", "Index", "Customer")</li>
                 <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
                 <li>
                 <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
@@ -201,8 +201,11 @@
 
         </div>
     </div>
+    <span id="success" style="margin-left: 600px;"></span><br />
+    <span id="returndate" style="margin-left: 600px;"></span>
     <script>
         $(document).ready(function () {
+            
             var d = new Date();
             var strDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
             var strreturndate = d.getFullYear() + "-" + (d.getMonth() + 2) + "-" + d.getDate();
@@ -230,8 +233,7 @@
             });
 
             $('#mybtn').click(function () {
-               
-                   
+                var success = "rent successful!";
                 
                 var data = {
                     "customer_id": cust_id,
@@ -247,11 +249,14 @@
                     data: data,
                     async: false,
                     success: function (d) {
-                        alert("Game rented successfully \nReturn Date: " + strreturndate);
+                       
+                        $('#success').text(success);
+                        $('#returndate').text(strreturndate);
                         document.getElementById("postform").reset();
                     },
                     error: function () {
-                        alert("Error please try again");
+                        success = "rent unsuccessful!"
+                        $('#success').text(success);
                     }
                 });
             });

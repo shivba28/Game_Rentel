@@ -70,6 +70,10 @@ namespace LoginMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddImage()
+        {
+            return View("AddImage");
+        }
     }
 
 }

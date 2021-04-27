@@ -26,6 +26,7 @@ namespace LoginMVC.Controllers
 
         public ActionResult CustomerLogin()
         {
+
             return RedirectToAction("Index", "Login");
         }
 
@@ -44,20 +45,22 @@ namespace LoginMVC.Controllers
 
         public ActionResult TopGames()
         {
+         
+
             OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
             var result = (from r in db.Rentals
                           group r by r.game_id into gamegroup
                           join g in db.Games on gamegroup.Key equals g.game_id
-                          select new
+                          select new TopViewModel
                           {
                               Id = gamegroup.Key,
                               Count = gamegroup.Count(),
                               name = g.game_name
                           }).OrderByDescending(c => c.Count).Take(5);
-            var newresult = result.ToList();
+            
             int count = result.Count();
-            ViewBag.message = count;
-            ViewBag.message2 = newresult;
+            ViewBag.message1 = count;
+            ViewBag.message2 = result.ToList();
             return View("TopGames");
             
         }
@@ -67,5 +70,14 @@ namespace LoginMVC.Controllers
             return View("AboutUs");
         }
 
+        public class TopViewModel
+        {
+            public int Id { get; set; }
+            public string name { get; set; }
+            public int Count { get; set; }
+        }
+
     }
+
+
 }

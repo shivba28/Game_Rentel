@@ -13,15 +13,21 @@ namespace LoginMVC.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Index(string submit)
         {
+            OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
+            int newsubmit = int.Parse(submit);
+            int game_id = newsubmit;
+            var gamelist = (from glist in db.Games where glist.game_id == game_id select glist).ToList();
+            ViewBag.message = gamelist;
             return View();
         }
 
         [HttpPost]
 
-        public ActionResult Authorize(string email, string password)
+        public ActionResult Authorize(string email, string password, string submit)
         {
+            ViewBag.message = submit;
             using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {    
                 String pass = encryptpass(password);
