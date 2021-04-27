@@ -183,7 +183,7 @@
     </div>
     <div class="card-container" style="display:block;">
         <h1 style="font-size: 40px; margin-left:27.5%;">Game Details</h1><br />
-        <hr style="margin-top:-20px;"/>
+        <hr style="margin-top:-20px;" />
         <ul style="font-size: 30px; padding: 20px;">
             <li>Game Name:</li>
             <li>Genre:</li>
@@ -195,36 +195,56 @@
         </div>
     </div>
 
-        <script src="~/Scripts/jquery-1.10.2.js"></script>
-        <script src="~/Scripts/jquery-1.4.4.js"></script>
-        <script>
-           /* $(document).ready(function () {
-                $("#mybtn").click(function () {
-                    var data = {
-                        genre_id: $("#genre").val(),
-                        game_name: $("#gname").val(),
-                        release_date: $("#rdate").val(),
-                        availability: $("#avail").val(),
-                        game_price: $("#gprice").val(),
-                    }
-                    $.ajax({
-                        url: 'https://localhost:44309/api/rentals',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: data,
-                        success: function (d) {
-                            alert("Game rented successfuly");
-                            document.getElementById("postform").reset();
-                        },
-                        error: function () {
-                            alert("Error please try again");
-                        }
-                    });
-                });
-            });*/
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
+  
+        <script type="text/javascript">
+            $(document).ready(function () {
+              
+                $('#btn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://localhost:44309/api/games',
+                    dataType: 'json',
+                    success: function (data) {
 
-        </script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                        alert("game rented");
+                     
+                    }
+
+                });
+
+
+            });
+
+   
+    /* $(document).ready(function () {
+    $("#mybtn").click(function () {
+    var data = {
+    genre_id: $("#genre").val(),
+    game_name: $("#gname").val(),
+    release_date: $("#rdate").val(),
+    availability: $("#avail").val(),
+    game_price: $("#gprice").val(),
+    }
+    $.ajax({
+    url: 'https://localhost:44309/api/rentals',
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function (d) {
+    alert("Game rented successfuly");
+    document.getElementById("postform").reset();
+    },
+    error: function () {
+    alert("Error please try again");
+    }
+    });
+    });
+    });*/
+
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

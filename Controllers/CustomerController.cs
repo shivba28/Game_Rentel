@@ -15,7 +15,7 @@ namespace LoginMVC.Controllers
         // GET: Customer
         public ActionResult Index(LoginMVC.Models.Game userModel)
         {
-            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
+            using (OnlineGameRentalStoreEntities1 db = new OnlineGameRentalStoreEntities1())
             {
                 var list = (from game_name in db.Games select game_name).ToList();
                 ViewBag.message = list;
@@ -37,7 +37,7 @@ namespace LoginMVC.Controllers
 
         public ActionResult TopGames()
         {
-            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
+            using (OnlineGameRentalStoreEntities1 db = new OnlineGameRentalStoreEntities1())
             {
                 var list = (from game_name in db.Rentals select game_name).ToList();
                 ViewBag.message = list;

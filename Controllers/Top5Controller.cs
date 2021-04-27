@@ -10,7 +10,7 @@ namespace LoginMVC.Controllers
 {
     public class Top5Controller : ApiController
     {
-        private OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
+        private OnlineGameRentalStoreEntities1 db = new OnlineGameRentalStoreEntities1();
         public IEnumerable<object> GetTop5()
         {
 
