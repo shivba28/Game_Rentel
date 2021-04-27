@@ -358,6 +358,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\ac.jpg" />
     <Content Include="Images\addgame.jpg" />
+    <Content Include="Images\Anjali.png" />
     <Content Include="Images\batman.jpg" />
     <Content Include="Images\bio.jpg" />
     <Content Include="Images\cod.jpg" />
@@ -365,11 +366,14 @@
     <Content Include="Images\forza.jpg" />
     <Content Include="Images\gta.jpg" />
     <Content Include="Images\hzd.jpg" />
+    <Content Include="Images\pratik.jpg" />
+    <Content Include="Images\Richa.jpg" />
     <Content Include="Images\shivba.jpg" />
     <Content Include="Images\main.jpg" />
     <Content Include="Images\pop.jpg" />
     <Content Include="Images\pubg.jpg" />
     <Content Include="Images\rdr2.jpg" />
+    <Content Include="Images\viren.jpeg" />
     <Content Include="Images\witcher.jpg" />
     <EntityDeploy Include="Models\LoginDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

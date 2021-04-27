@@ -1,13 +1,14 @@
-﻿@using LoginMVC.Models
+﻿
 
 @{ string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" };
 }
 
-
-
 @{
-    var game_name = ViewBag.Message;
+    var game = ViewBag.Message;
+    var i = 0;
+    int game_id = 0;
 }
+
 
 <!DOCTYPE html>
 
@@ -20,6 +21,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="~/Styles/sass/home.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
     <style>
         body {
             background-color: black;
@@ -118,7 +124,8 @@
             <ul class="nav navbar-nav">
                 <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
                 <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
-                <li><li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                <li>
+                <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
@@ -135,47 +142,47 @@
         </div>
     </nav>
 
+
+
     @using (Html.BeginForm("Rent", "Customer"))
     {
-        <div class="card-container">
-            @for (var i = 0; i < game_name.Count; i++)
-            {
+    <div class="card-container">
 
-                <div class="card c_@i" value="@game_name[i].game_name">
-                    <div class="container" style="background-image: url(@games[i]);"></div>
-                    <div class="container2">
-                        <button type="submit" class="btn btn-block btn-large btn-primary">@game_name[i].game_name</button>
-                    </div>
+        @for (i = 0; i < game.Count; i++)
+        {
+
+
+            <div class="card">
+                <div class="container" style="background-image: url(@games[i]);"></div>
+                <div class="container2">
+                    <button type="submit" class="btn btn-block btn-large btn-primary" name="submit" value="@game[i].game_id">@game[i].game_name</button>
                 </div>
-                }
             </div>
-            }
+        }
+        
+    </div>
+    }
+    <script>
+        $(document).ready(function () {
 
-            <script src="~/Scripts/jquery-1.10.2.js"></script>
-            <script src="~/Scripts/jquery-1.4.4.js"></script>
-            <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-            <script>
+                $.ajax({
+                    url: 'https://localhost:44309/api/Games',
+                    type: 'GET',
+                    async: false,
+                    success: function (d) {
+                        console.log(d);
+                        for (var i = 0; i < d.length; i++) {
+                            if (gamename == d[i].game_name) {
+                            @game_id = d[i].game_id;
+                                console.log(@game_id);
 
-                $(document).ready(function () {
-                    var game_name = [];
-
-                    $.ajax({
-                        url: 'https://localhost:44309/api/games',
-                        type: 'GET',
-                        async: false,
-                        dataType: 'json',
-                        success: function (data, textStatus, xhr) {
-                            for (var i = 0; i < data.length; i++) {
-                                game_name.push(data[i].game_name);
                             }
-                            console.log(game_name);
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            console.log('Error in Operation');
                         }
+                    }
 
-                    });
+            });
+        });
+    </script>
 
-                });</script>
-        </body>
-    </html>
+</body>
+</html>

@@ -23,7 +23,7 @@ namespace LoginMVC.Controllers
         public ActionResult Authorize(string email, string password)
         {
             using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
-            {
+            {    
                 String pass = encryptpass(password);
                 bool isvalid = db.Customers.Any(x => x.email == email && x.password == pass);
                 if (isvalid)
@@ -31,6 +31,7 @@ namespace LoginMVC.Controllers
                     FormsAuthentication.SetAuthCookie(email, false);
                     if (Request.Form["ReturnUrl"] == "")
                     {
+                        
                         return RedirectToAction("Index", "Customer");
                     }
                     else

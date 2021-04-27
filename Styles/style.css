@@ -136,31 +136,31 @@ Main Components
   line-height: 1.8;
 }
 .cd-section:nth-of-type(2) .cd-half-block:first-of-type {
-  background-image: url('/Images/img-1.jpg');
+  background-image: url('/Images/Anjali.png');
   background-size: contain;
 }
 .cd-section:nth-of-type(3) .cd-half-block:first-of-type {
-  background-image: url('images/img-2.jpg');
+  background-image: url('/Images/pratik.jpg');
   background-size: contain;
 }
 .cd-section:nth-of-type(4) .cd-half-block:first-of-type {
-  background-image: url("images/img-3.jpg");
+  background-image: url("/Images/shivba.jpg");
   background-size: contain;
 }
 .cd-section:nth-of-type(5) .cd-half-block:first-of-type {
-    background-image: url("images/img-3.jpg");
+    background-image: url("/Images/Richa.jpg");
     background-size: contain;
 }
 .cd-section:nth-of-type(6) .cd-half-block:first-of-type {
-    background-image: url("images/img-3.jpg");
+    background-image: url("/Images/viren.jpeg");
     background-size: contain;
 }
 .cd-section:nth-of-type(7) .cd-half-block:first-of-type {
-    background-image: url("images/img-3.jpg");
+    background-image: url("/Images/gta.jpg");
     background-size: contain;
 }
 .cd-section:nth-of-type(8) .cd-half-block:first-of-type {
-    background-image: url("images/img-3.jpg");
+    background-image: url("/Images/pubg.jpg");
     background-size: contain;
 }
 @media only screen and (min-width: 1170px) {

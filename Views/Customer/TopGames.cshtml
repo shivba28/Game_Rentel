@@ -1,10 +1,13 @@
-﻿@using LoginMVC.Controllers;
-@using LoginMVC.Models
+﻿@using LoginMVC.Models
+@using LoginMVC.Controllers
 @{ Layout = null; }
 
 @{ string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" }; }
 @{
-    var game_name = ViewBag.Message;
+    int count = ViewBag.message;
+    var top4 = ViewBag.message2;
+    var i = 0;
+
 }
 
 <!DOCTYPE html>
@@ -41,8 +44,8 @@
         }
 
         .card-container {
-            position:relative;
-            margin-top:-400px;
+            position: relative;
+            margin-top: -400px;
             height: 400px;
             width: 57%;
             margin-left: 40%;
@@ -155,6 +158,36 @@
             height: 750px;
         }
     </style>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var top1;
+            var top4= [];
+
+            $.ajax({
+                url: 'https://localhost:44309/api/top5',
+                type: 'GET',
+                async: false,
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    length = data.length;
+                    $('#length').text(length);
+                    top1 = data[0].name;
+                    $('#top1').text(top1);
+                    for (i = 0; i < data.length; i++) {
+                        top4.push(data[i].name);
+                    }
+
+                    },
+                error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error in Operation');
+                    }
+
+                });
+        });</script>
 </head>
 <body>
     <div class="bg-image"></div>
@@ -166,7 +199,8 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index")</li>
                 <li class="active">@Html.ActionLink("Top 5 Games", "TopGames")</li>
-                <li><li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                <li>
+                <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
@@ -180,49 +214,27 @@
             </ul>
         </div>
     </nav>
-
     @using (Html.BeginForm("Rent", "Customer", FormMethod.Post))
     {
-        <img class="img1" src="~/Images/crown.png"/>
+        <img class="img1" src="~/Images/crown.png" />
         <div class="card-container2">
             <div class="card">
-                <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
+                <div class="container" style="background-image: url(/Images/pop.jpg);"></div>
                 <div class="container2">
-                    <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
-                </div>
+                    <button type="submit" name="submit" value="1" class="btn btn-block btn-large btn-primary"><span id="top1"></span></button>
                 </div>
             </div>
+        </div>
         <div class="card-container">
-            @for (var i = 1; i < game_name.Count; i++)
+            @for(i = 1; i < count; i++)
             {
-
-                <div class="card c_@i" value="@game_name[i].game_name">
+                <div class="card" value="@top4[i]">
                     <div class="container" style="background-image: url(@games[i]);"></div>
                     <div class="container2">
-                        <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                        <button type="submit" name="submit" value="@top4[i].Id" class="btn btn-block btn-large btn-primary">@top4[i].name</button>
                     </div>
                 </div>}
         </div>}
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
 
-            var game_name;
-            $.ajax({
-                url: 'https://localhost:44309/api/top5',
-                type: 'GET',
-                async: false,
-                dataType: 'json',
-                success: function (data, textStatus, xhr) {
-                    console.log(data);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log('Error in Operation');
-                }
-
-            });
-        });</script>
 </body>
 </html>

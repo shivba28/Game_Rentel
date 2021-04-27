@@ -17,7 +17,7 @@ namespace LoginMVC.Controllers
         {
             using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {
-                var list = (from game_name in db.Games select game_name).ToList();
+                var list = (from game in db.Games select game).ToList();
                 ViewBag.message = list;
                 return View();
             }
@@ -29,20 +29,36 @@ namespace LoginMVC.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+
         [Authorize]
-        public ActionResult Rent()
+        public ActionResult Rent(string submit)
         {
-            return View("Rent");
+
+            OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
+            int newsubmit = int.Parse(submit);
+            int game_id = newsubmit;
+                var gamelist = (from glist in db.Games where glist.game_id == game_id select glist).ToList();
+                ViewBag.message = gamelist;
+                return View("Rent");
         }
 
         public ActionResult TopGames()
         {
-            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
-            {
-                var list = (from game_name in db.Rentals select game_name).ToList();
-                ViewBag.message = list;
-                return View("TopGames");
-            }
+            OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
+            var result = (from r in db.Rentals
+                          group r by r.game_id into gamegroup
+                          join g in db.Games on gamegroup.Key equals g.game_id
+                          select new
+                          {
+                              Id = gamegroup.Key,
+                              Count = gamegroup.Count(),
+                              name = g.game_name
+                          }).OrderByDescending(c => c.Count).Take(5);
+            var newresult = result.ToList();
+            int count = result.Count();
+            ViewBag.message = count;
+            ViewBag.message2 = newresult;
+            return View("TopGames");
             
         }
 
