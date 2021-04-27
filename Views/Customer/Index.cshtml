@@ -6,7 +6,7 @@
 @{
     var game = ViewBag.Message;
     var i = 0;
-    int game_id = 0;
+    int show = 0;
 }
 
 
@@ -128,11 +128,15 @@
                 <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
+                    show = 1;
+
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
                     <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li>
                 }
                 else
                 {
+                    show= 0;
+
                     <li style="padding-left:860px;">@Html.ActionLink("Login", "Index", "Login")</li>
                 }
 
@@ -164,24 +168,26 @@
     }
     <script>
         $(document).ready(function () {
+            
+            console.log(@show);
+            if (@show == "1") {
+                $('[name=submit]').show();
+            }
 
-                $.ajax({
-                    url: 'https://localhost:44309/api/Games',
-                    type: 'GET',
-                    async: false,
-                    success: function (d) {
-                        console.log(d);
-                        for (var i = 0; i < d.length; i++) {
-                            if (gamename == d[i].game_name) {
-                            @game_id = d[i].game_id;
-                                console.log(@game_id);
+            else {
+                $('[name=submit]').hide();
+            }
 
-                            }
-                        }
-                    }
+            $.ajax({
+                url: 'https://localhost:44309/api/Games',
+                type: 'GET',
+                async: false,
+                success: function (d) {
+                    console.log(d);
+                }
+            });
 
             });
-        });
     </script>
 
 </body>
