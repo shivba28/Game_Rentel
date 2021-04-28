@@ -64,6 +64,7 @@
             margin-top: 80px;
             margin-left: 20px;
             border-radius: 25px;
+            overflow-y: scroll;
         }
 
         .dataTables_length {
@@ -87,6 +88,7 @@
             margin-top: 20px;
             margin-left: 20px;
             margin-bottom: 30px;
+            overflow-y:scroll;
         }
 
         select {
@@ -233,7 +235,18 @@
                         columns: [
                             { 'data': 'game_id' },
                             { 'data': 'game_name' },
-                            { 'data': 'release_date' },
+                            {
+                                'data': 'release_date',
+                             "render": function (data) {
+                                    if (data !== null) {
+                                        var javascriptDate = new Date(data);
+                                        javascriptDate = javascriptDate.getMonth() + 1 + "-" + javascriptDate.getDate() + "-" + javascriptDate.getFullYear();
+                                        return javascriptDate;
+                                    } else {
+                                        return "";
+                                    }
+                                }
+                            },
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
                             { 'data': 'genre_name' },
