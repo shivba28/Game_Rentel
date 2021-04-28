@@ -164,6 +164,16 @@
             width: 750px;
             height: 750px;
         }
+
+        span {
+            width: 800px;
+            font-size: 40px;
+            color: white;
+            position: absolute;
+            margin-top: 100px;
+            margin-left: 500px;
+            z-index: 4;
+        }
     </style>
 </head>
 <body>
@@ -202,33 +212,40 @@
             <div class="card">
                 <div class="container" style="background-image: url(/Images/pop.jpg);"></div>
                 <div class="container2">
-                    <button type="submit" name="submit" value="1" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                    <button type="submit" name="submit" value="@top[0].Id" class="btn btn-block btn-large btn-primary">@top[0].name</button>
                 </div>
             </div>
         </div>
         <div class="card-container">
-            @for(int j = 1; j < count; j++)
+            @for (int j = 1; j < count; j++)
             {
 
                 <div class="card">
                     <div class="container" style="background-image: url(@games[k]);"></div>
                     <div class="container2">
-                        <button type="submit" name="submit" value="@top[j].Id" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                        <button type="submit" name="submit" value="@top[j].Id" class="btn btn-block btn-large btn-primary">@top[j].name</button>
                     </div>
                 </div>
-                k = k + 1; }
+                k = k + 1;
+            }
+
         </div>
-        }
+        <span id="note"></span>
+    }
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-1.4.4.js"></script>
     <script>
         $(document).ready(function () {
+            var note = "*Note* : Please Login to rent a game.";
+            $('#note').text(note);
             if (@show == "1") {
-            $('[name=submit]').show();
+                $('[name=submit]').show();
+                $('#note').hide();
             }
 
             else {
                 $('[name=submit]').hide();
+                $('#note').show();
             }
             var top1;
             var top4 = [];

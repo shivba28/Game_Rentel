@@ -64,6 +64,7 @@
             margin-top: 80px;
             margin-left: 20px;
             border-radius: 25px;
+            overflow-y: scroll;
         }
 
         .dataTables_length {
@@ -87,6 +88,7 @@
             margin-top: 20px;
             margin-left: 20px;
             margin-bottom: 30px;
+            overflow-y:scroll;
         }
 
         select {
@@ -161,10 +163,13 @@
                 </table>
 
             </div>
+            <span id="success"></span>
         </div>
+        
     </div>
     <script>
         $(document).ready(function () {
+            var success;
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
 
@@ -174,7 +179,9 @@
 
                     success: function (d) {
                         console.log(d);
-                        alert("deleted Successfully");
+                        success = "Deleted Successfully!";
+                        $('#success').text(success);
+                       
 
                     },
 
@@ -186,8 +193,16 @@
 
                             success: function (d) {
                                 console.log(d);
-                                if (d == 1) { alert("Game is rented... Cannot delete the game.. please try again"); }
-                                else { alert("invalid game Id.. please try again"); }
+                                if (d == 1) {
+                                    success = "Game is rented... Cannot delete the game.. please try again";
+                                    $('#success').text(success);
+                                    
+                                }
+                                else {
+                                    success = "invalid game Id.. please try again";
+                                    $('#success').text(success);
+                                
+                                }
 
                             },
 
@@ -220,7 +235,18 @@
                         columns: [
                             { 'data': 'game_id' },
                             { 'data': 'game_name' },
-                            { 'data': 'release_date' },
+                            {
+                                'data': 'release_date',
+                             "render": function (data) {
+                                    if (data !== null) {
+                                        var javascriptDate = new Date(data);
+                                        javascriptDate = javascriptDate.getMonth() + 1 + "-" + javascriptDate.getDate() + "-" + javascriptDate.getFullYear();
+                                        return javascriptDate;
+                                    } else {
+                                        return "";
+                                    }
+                                }
+                            },
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
                             { 'data': 'genre_name' },

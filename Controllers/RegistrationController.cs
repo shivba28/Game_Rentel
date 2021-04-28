@@ -26,7 +26,7 @@ namespace LoginMVC.Controllers
                 var eid = db.Customers.Any(x => x.email == userModel.email);
                 if (eid)
                 {
-                    //userModel.LoginErrorMessage = "1";
+                    userModel.LoginErrorMessage = "Email already exists.";
                     return View("RegistrationView", userModel);
                 }
 
@@ -56,7 +56,7 @@ namespace LoginMVC.Controllers
             return msg;
         }
 
-
+       
 
     }
 }

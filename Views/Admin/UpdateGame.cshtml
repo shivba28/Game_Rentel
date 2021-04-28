@@ -62,11 +62,12 @@
         .container .box2 {
             width: 70%;
             height: 700px;
-            background-color:transparent;
+            background-color: transparent;
             position: relative;
             margin-top: 80px;
             margin-left: 20px;
             border-radius: 25px;
+            overflow-y: scroll;
         }
 
         .dataTables_length {
@@ -90,6 +91,7 @@
             margin-top: 20px;
             margin-left: 20px;
             margin-bottom: 30px;
+            overflow-y: scroll;
         }
 
         select {
@@ -166,10 +168,12 @@
                 </table>
 
             </div>
+            <span id="success"></span>
         </div>
     </div>
     <script>
         $(document).ready(function () {
+            var success;
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
                 console.log(id);
@@ -182,11 +186,14 @@
                         game_price: $("#new_price").val(),
                     },
                     success: function (d) {
-                        alert("updated Successfully");
+                        success = "Updated Successfully";
+                        $('#success').text(success);
+                       
 
                     },
                     error: function () {
-                        alert("Error please try again");
+                        success = "Error please try again";
+                        $('#success').text(success);
                     }
                 });
                 window.location.reload();
@@ -209,7 +216,18 @@
                         columns: [
                             { 'data': 'game_id' },
                             { 'data': 'game_name' },
-                            { 'data': 'release_date' },
+                            {
+                                'data': 'release_date',
+                             "render": function (data) {
+                                    if (data !== null) {
+                                        var javascriptDate = new Date(data);
+                                        javascriptDate = javascriptDate.getMonth() + 1 + "-" + javascriptDate.getDate() + "-" + javascriptDate.getFullYear();
+                                        return javascriptDate;
+                                    } else {
+                                        return "";
+                                    }
+                                }
+                            },
                             { 'data': 'availability' },
                             { 'data': 'game_price' },
                             { 'data': 'genre_name' },

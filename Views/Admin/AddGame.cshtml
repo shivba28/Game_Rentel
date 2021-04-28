@@ -97,12 +97,14 @@
                     </form>
                 </main>
             </div>
+            <span id="success"></span>
         </div>
     </div>
     <script>
 
 
         $(document).ready(function () {
+            var success;
             $("#mybtn").click(function () {
                 var data = {
                     genre_name: $("#genre").val(),
@@ -118,11 +120,14 @@
                     async:false,
                     data: data,
                     success: function (d) {
-                        alert("Saved Successfully");
+                        success = "Game added successfully!"
+                        $('#success').text(success);
                         document.getElementById("postform").reset();
                     },
                     error: function () {
-                        alert("Error please try again");
+                        success = "Error please try again";
+                        $('#success').text(success);
+                        
                     }
                 });
                 window.location.reload();
