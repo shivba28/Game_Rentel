@@ -13,7 +13,7 @@ namespace LoginMVC.Controllers
     {
 
         // GET: Customer
-        public ActionResult Index(LoginMVC.Models.Game userModel)
+        public ActionResult Index()
         {
             using (OnlineGameRentalStoreEntities1 db = new OnlineGameRentalStoreEntities1())
             {
@@ -24,11 +24,6 @@ namespace LoginMVC.Controllers
                 
         }
 
-        public ActionResult CustomerLogin()
-        {
-
-            return RedirectToAction("Index", "Login");
-        }
 
 
         [Authorize]

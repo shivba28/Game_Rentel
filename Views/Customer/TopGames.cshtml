@@ -7,10 +7,12 @@
     int count = ViewBag.message1;
     var top = ViewBag.message2;
     var k = 1;
-    foreach(var i in top)
+    int show = 0;
+    foreach (var i in top)
     {
         var game_name = i.name;
         var game_id = i.Id;
+
     }
 
 }
@@ -178,11 +180,15 @@
                 <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
+                    show = 1;
+
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
                     <li style="font-size: 15px;">@Html.ActionLink("Logout", "Logout", "Login")</li>
                 }
                 else
                 {
+                    show = 0;
+
                     <li style="padding-left:850px;">@Html.ActionLink("Login", "Index", "Login")</li>
                 }
 
@@ -217,7 +223,13 @@
     <script src="~/Scripts/jquery-1.4.4.js"></script>
     <script>
         $(document).ready(function () {
+            if (@show == "1") {
+            $('[name=submit]').show();
+            }
 
+            else {
+                $('[name=submit]').hide();
+            }
             var top1;
             var top4 = [];
 

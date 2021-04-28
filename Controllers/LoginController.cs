@@ -13,21 +13,21 @@ namespace LoginMVC.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        public ActionResult Index(string submit)
+        public ActionResult Index()
         {
-            OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
+           /* OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities();
             int newsubmit = int.Parse(submit);
             int game_id = newsubmit;
             var gamelist = (from glist in db.Games where glist.game_id == game_id select glist).ToList();
-            ViewBag.message = gamelist;
+            ViewBag.message = gamelist;*/
             return View();
         }
 
         [HttpPost]
 
-        public ActionResult Authorize(string email, string password, string submit)
+        public ActionResult Authorize(string email, string password)
         {
-            ViewBag.message = submit;
+            
             using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {    
                 String pass = encryptpass(password);
@@ -37,11 +37,12 @@ namespace LoginMVC.Controllers
                     FormsAuthentication.SetAuthCookie(email, false);
                     if (Request.Form["ReturnUrl"] == "")
                     {
-                        
+                       
                         return RedirectToAction("Index", "Customer");
                     }
                     else
                     {
+                        
                         return Redirect(Request.Form["ReturnUrl"]);
                     }
                 }
