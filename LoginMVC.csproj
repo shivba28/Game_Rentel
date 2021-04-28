@@ -360,6 +360,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\ac.jpg" />
     <Content Include="Images\addgame.jpg" />
+    <Content Include="Images\Anjali.png" />
     <Content Include="Images\batman.jpg" />
     <Content Include="Images\bio.jpg" />
     <Content Include="Images\cod.jpg" />
@@ -367,11 +368,15 @@
     <Content Include="Images\forza.jpg" />
     <Content Include="Images\gta.jpg" />
     <Content Include="Images\hzd.jpg" />
+    <Content Include="Images\pratik.jpg" />
+    <Content Include="Images\Richa.jpg" />
+    <Content Include="Images\shivani.jpg" />
     <Content Include="Images\shivba.jpg" />
     <Content Include="Images\main.jpg" />
     <Content Include="Images\pop.jpg" />
     <Content Include="Images\pubg.jpg" />
     <Content Include="Images\rdr2.jpg" />
+    <Content Include="Images\viren.jpeg" />
     <Content Include="Images\witcher.jpg" />
     <EntityDeploy Include="Models\LoginDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -439,6 +444,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DocumentUploadController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -455,6 +461,7 @@
     <Compile Include="Models\Game.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InMemoryMultipartFormDataStreamProvide.cs" />
     <Compile Include="Models\LoginDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -495,6 +502,7 @@
     <Content Include="Styles\_layout.scss" />
     <Content Include="Styles\_mixins.scss" />
     <Content Include="Styles\_variables.scss" />
+    <Content Include="Views\Admin\AddImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -504,6 +512,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ClientDocument\" />
     <Folder Include="Styles\sass\pages\" />
     <Folder Include="Views\Genre\" />
     <Folder Include="Views\Rental\" />

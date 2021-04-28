@@ -28,5 +28,6 @@ namespace LoginMVC.Models
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
+        public object game_id { get; set; }
     }
 }

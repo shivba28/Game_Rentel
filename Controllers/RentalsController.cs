@@ -59,8 +59,6 @@ namespace LoginMVC.Controllers
             {
 
                 int availability = (from g in db.Games
-                                    join r in db.Rentals
-                                    on g.game_id equals r.game_id
                                     where g.game_id == rent.game_id
                                     select g.availability).FirstOrDefault();
 

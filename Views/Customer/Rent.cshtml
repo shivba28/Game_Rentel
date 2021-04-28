@@ -4,7 +4,8 @@
 }
 
 @{
-    var game_name = ViewBag.Message;
+    var game = ViewBag.Message;
+    var i = 0;
 }
 
 
@@ -18,11 +19,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="~/Styles/sass/home.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.4.4.js"></script>
 
     <style>
         h1 {
             font-size: 26px;
         }
+
         #dearUser {
             color: black;
             font-size: 20px;
@@ -143,7 +147,6 @@
         a {
             font-size: 18px;
         }
-        
     </style>
 </head>
 <body>
@@ -154,7 +157,7 @@
                 <a class="navbar-brand"><u>Video Game Rental Store</u></a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Customer")</li>
+                <li>@Html.ActionLink("Home", "Index", "Customer")</li>
                 <li>@Html.ActionLink("Top 5 Games", "TopGames", "Customer")</li>
                 <li>
                 <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
@@ -172,7 +175,6 @@
             </ul>
         </div>
     </nav>
-
     <div class="card-container2">
         <div class="card">
             <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
@@ -185,66 +187,81 @@
         <h1 style="font-size: 40px; margin-left:27.5%;">Game Details</h1><br />
         <hr style="margin-top:-20px;" />
         <ul style="font-size: 30px; padding: 20px;">
-            <li>Game Name:</li>
-            <li>Genre:</li>
-            <li>Release Date:</li>
-            <li>Price:</li>
+
+            @for (i = 0; i < game.Count; i++)
+            {
+            <li>Game Name: @game[i].game_name</li>
+            <li>Genre: @game[i].genre_name</li>
+            <li>Release Date: @game[i].release_date</li>
+            <li>Price: @game[i].game_price</li>
+            }
         </ul>
         <div class="container2">
-            <button type="submit" class="btn btn-block btn-large btn-primary">Confirm Rent</button>
+            <button type="submit" id="mybtn" class="btn btn-block btn-large btn-primary mybtn">Confirm Rent</button>
+
         </div>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-1.4.4.js"></script>
-  
-        <script type="text/javascript">
-            $(document).ready(function () {
-              
-                $('#btn').click(function () {
-                $.ajax({
-                    type: 'GET',
-                    url: 'https://localhost:44309/api/games',
-                    dataType: 'json',
-                    success: function (data) {
-
-                        alert("game rented");
-                     
+    <span id="success" style="margin-left: 600px;"></span><br />
+    <span id="returndate" style="margin-left: 600px;"></span>
+    <script>
+        $(document).ready(function () {
+            
+            var d = new Date();
+            var strDate = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            var strreturndate = d.getFullYear() + "-" + (d.getMonth() + 2) + "-" + d.getDate();
+            var cust_id;
+            var newgame_id;
+            $.ajax({
+                url: 'https://localhost:44309/api/User',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (d) {
+                    console.log(d[0].email);
+                    for (var i = 0; i < d.length; i++) {
+                        if ("@User.Identity.Name" == d[i].email) {
+                            cust_id = d[i].customer_id;
+                            console.log(cust_id);
+                        }
                     }
 
-                });
 
-
+                },
+                error: function () {
+                    alert("Error please try again");
+                }
             });
 
-   
-    /* $(document).ready(function () {
-    $("#mybtn").click(function () {
-    var data = {
-    genre_id: $("#genre").val(),
-    game_name: $("#gname").val(),
-    release_date: $("#rdate").val(),
-    availability: $("#avail").val(),
-    game_price: $("#gprice").val(),
-    }
-    $.ajax({
-    url: 'https://localhost:44309/api/rentals',
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function (d) {
-    alert("Game rented successfuly");
-    document.getElementById("postform").reset();
-    },
-    error: function () {
-    alert("Error please try again");
-    }
-    });
-    });
-    });*/
+            $('#mybtn').click(function () {
+                var success = "rent successful!";
+                
+                var data = {
+                    "customer_id": cust_id,
+                    "game_id": @game[0].game_id,
+                    "return_date": strreturndate,
+                    "rented_on": strDate,
 
+                }
+                $.ajax({
+                    url: 'https://localhost:44309/api/rentals',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    async: false,
+                    success: function (d) {
+                       
+                        $('#success').text(success);
+                        $('#returndate').text(strreturndate);
+                        document.getElementById("postform").reset();
+                    },
+                    error: function () {
+                        success = "rent unsuccessful!"
+                        $('#success').text(success);
+                    }
+                });
+            });
+        });
     </script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+   
 </body>
 </html>

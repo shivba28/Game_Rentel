@@ -1,10 +1,18 @@
-﻿@using LoginMVC.Controllers;
-@using LoginMVC.Models
+﻿@using LoginMVC.Models
+@using LoginMVC.Controllers
 @{ Layout = null; }
 
 @{ string[] games = { "/Images/pop.jpg", "/Images/ac.jpg", "/Images/batman.jpg", "/Images/bio.jpg", "/Images/cod.jpg", "/Images/forza.jpg", "/Images/gta.jpg", "/Images/hzd.jpg", "/Images/pubg.jpg", "/Images/rdr2.jpg", "/Images/witcher.jpg" }; }
 @{
-    var game_name = ViewBag.Message;
+    int count = ViewBag.message1;
+    var top = ViewBag.message2;
+    var k = 1;
+    foreach(var i in top)
+    {
+        var game_name = i.name;
+        var game_id = i.Id;
+    }
+
 }
 
 <!DOCTYPE html>
@@ -41,8 +49,8 @@
         }
 
         .card-container {
-            position:relative;
-            margin-top:-400px;
+            position: relative;
+            margin-top: -400px;
             height: 400px;
             width: 57%;
             margin-left: 40%;
@@ -166,7 +174,8 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index")</li>
                 <li class="active">@Html.ActionLink("Top 5 Games", "TopGames")</li>
-                <li><li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
+                <li>
+                <li>@Html.ActionLink("About Us", "AboutUs", "Customer")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li id="dearUser" style="padding-left:600px;">Dear - @User.Identity.Name</li>
@@ -180,36 +189,38 @@
             </ul>
         </div>
     </nav>
-
-    @using (Html.BeginForm("Rent", "Customer", FormMethod.Post))
+    @using (Html.BeginForm("Rent", "Customer"))
     {
-        <img class="img1" src="~/Images/crown.png"/>
+        <img class="img1" src="~/Images/crown.png" />
         <div class="card-container2">
             <div class="card">
-                <div class="container" style="background-image: url(/Images/cod.jpg);"></div>
+                <div class="container" style="background-image: url(/Images/pop.jpg);"></div>
                 <div class="container2">
-                    <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
-                </div>
+                    <button type="submit" name="submit" value="1" class="btn btn-block btn-large btn-primary">Rent Now</button>
                 </div>
             </div>
+        </div>
         <div class="card-container">
-            @for (var i = 1; i < game_name.Count; i++)
+            @for(int j = 1; j < count; j++)
             {
 
-                <div class="card c_@i" value="@game_name[i].game_name">
-                    <div class="container" style="background-image: url(@games[i]);"></div>
+                <div class="card">
+                    <div class="container" style="background-image: url(@games[k]);"></div>
                     <div class="container2">
-                        <button type="submit" class="btn btn-block btn-large btn-primary">Rent Now</button>
+                        <button type="submit" name="submit" value="@top[j].Id" class="btn btn-block btn-large btn-primary">Rent Now</button>
                     </div>
-                </div>}
-        </div>}
+                </div>
+                k = k + 1; }
+        </div>
+        }
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
 
-            var game_name;
+            var top1;
+            var top4 = [];
+
             $.ajax({
                 url: 'https://localhost:44309/api/top5',
                 type: 'GET',
@@ -217,6 +228,14 @@
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
                     console.log(data);
+                    length = data.length;
+                    $('#length').text(length);
+                    top1 = data[0].name;
+                    $('#top1').text(top1);
+                    for (i = 0; i < data.length; i++) {
+                        top4.push(data[i].name);
+                    }
+
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log('Error in Operation');
