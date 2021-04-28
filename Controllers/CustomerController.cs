@@ -15,7 +15,7 @@ namespace LoginMVC.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            using (OnlineGameRentalStoreEntities1 db = new OnlineGameRentalStoreEntities1())
+            using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
             {
                 var list = (from game in db.Games select game).ToList();
                 ViewBag.message = list;
