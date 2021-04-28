@@ -25,7 +25,7 @@ namespace LoginMVC.Controllers
 
         [HttpPost]
 
-        public ActionResult Authorize(string email, string password)
+        public ActionResult Authorize(string email, string password, LoginMVC.Models.Customer userModel)
         {
             
             using (OnlineGameRentalStoreEntities db = new OnlineGameRentalStoreEntities())
@@ -49,8 +49,8 @@ namespace LoginMVC.Controllers
 
                 else
                 {
-                    ModelState.AddModelError(" ", "Invalid email or Password");
-                    return View("Index");
+                    userModel.LoginErrorMessage = "Email or Password is incorrect";
+                    return View("Index", userModel);
                 }
             }
         }

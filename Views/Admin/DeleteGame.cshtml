@@ -161,10 +161,13 @@
                 </table>
 
             </div>
+            <span id="success"></span>
         </div>
+        
     </div>
     <script>
         $(document).ready(function () {
+            var success;
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
 
@@ -174,7 +177,9 @@
 
                     success: function (d) {
                         console.log(d);
-                        alert("deleted Successfully");
+                        success = "Deleted Successfully!";
+                        $('#success').text(success);
+                       
 
                     },
 
@@ -186,8 +191,16 @@
 
                             success: function (d) {
                                 console.log(d);
-                                if (d == 1) { alert("Game is rented... Cannot delete the game.. please try again"); }
-                                else { alert("invalid game Id.. please try again"); }
+                                if (d == 1) {
+                                    success = "Game is rented... Cannot delete the game.. please try again";
+                                    $('#success').text(success);
+                                    
+                                }
+                                else {
+                                    success = "invalid game Id.. please try again";
+                                    $('#success').text(success);
+                                
+                                }
 
                             },
 

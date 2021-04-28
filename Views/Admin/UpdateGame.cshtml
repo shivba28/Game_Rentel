@@ -166,10 +166,12 @@
                 </table>
 
             </div>
+            <span id="success"></span>
         </div>
     </div>
     <script>
         $(document).ready(function () {
+            var success;
             $("#mybtn").click(function () {
                 var id = $("#g_id").val();
                 console.log(id);
@@ -182,11 +184,14 @@
                         game_price: $("#new_price").val(),
                     },
                     success: function (d) {
-                        alert("updated Successfully");
+                        success = "Updated Successfully";
+                        $('#success').text(success);
+                       
 
                     },
                     error: function () {
-                        alert("Error please try again");
+                        success = "Error please try again";
+                        $('#success').text(success);
                     }
                 });
                 window.location.reload();

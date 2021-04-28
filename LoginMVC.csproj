@@ -368,6 +368,7 @@
     <Content Include="Images\hzd.jpg" />
     <Content Include="Images\pratik.jpg" />
     <Content Include="Images\Richa.jpg" />
+    <Content Include="Images\sagar.jpeg" />
     <Content Include="Images\shivani.jpg" />
     <Content Include="Images\shivba.jpg" />
     <Content Include="Images\main.jpg" />
@@ -442,7 +443,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\DocumentUploadController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -500,7 +500,6 @@
     <Content Include="Styles\_layout.scss" />
     <Content Include="Styles\_mixins.scss" />
     <Content Include="Styles\_variables.scss" />
-    <Content Include="Views\Admin\AddImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -510,7 +509,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ClientDocument\" />
     <Folder Include="Styles\sass\pages\" />
     <Folder Include="Views\Genre\" />
     <Folder Include="Views\Rental\" />

@@ -30,5 +30,6 @@ namespace LoginMVC.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
+        public string LoginErrorMessage { get; internal set; }
     }
 }
